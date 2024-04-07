@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="create_seat_reservations_schema" author="tonya">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS seat_reservations;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_client_id_seq" author="tonya">
+        <createSequence sequenceName="client_id_seq" incrementBy="1" schemaName="seat_reservations"/>
+    </changeSet>
+
+    <changeSet id="create_client_table" author="tonya">
+        <createTable tableName="client" schemaName="seat_reservations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create_film_id_seq" author="tonya">
+        <createSequence sequenceName="film_id_seq" incrementBy="1" schemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_film_table" author="tonya">
+        <createTable tableName="film" schemaName="seat_reservations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year_of_release" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age_restriction" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create_session_id_seq" author="tonya">
+        <createSequence sequenceName="session_id_seq" incrementBy="1" schemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_session_table" author="tonya">
+        <createTable tableName="session" schemaName="seat_reservations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="film_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date_and_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date_and_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="session" baseColumnNames="film_id" constraintName="session_film_id_fk"
+                                 referencedTableName="film"
+                                 referencedColumnNames="id" baseTableSchemaName="seat_reservations"
+                                 referencedTableSchemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_place_id_seq" author="tonya">
+        <createSequence sequenceName="place_id_seq" incrementBy="1" schemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_place_table" author="tonya">
+        <createTable tableName="place" schemaName="seat_reservations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="row" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create_booking_id_seq" author="tonya">
+        <createSequence sequenceName="booking_id_seq" incrementBy="1" schemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_booking_table" author="tonya">
+        <createTable tableName="booking" schemaName="seat_reservations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_of_purchase" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="booking" baseColumnNames="client_id"
+                                 constraintName="booking_client_id_fk" referencedTableName="client"
+                                 referencedColumnNames="id" baseTableSchemaName="seat_reservations"
+                                 referencedTableSchemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_reserved_seats_seq" author="tonya">
+        <createSequence sequenceName="reserved_seats_seq" incrementBy="1" schemaName="seat_reservations"/>
+    </changeSet>
+    <changeSet id="create_reserved_seats_table" author="tonya">
+        <createTable tableName="reserved_seats" schemaName="seat_reservations">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="booking_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="session_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="reserved_seats" columnNames="session_id, place_id"
+                             schemaName="seat_reservations"/>
+        <addForeignKeyConstraint baseTableName="reserved_seats" baseColumnNames="booking_id"
+                                 constraintName="reserved_seats_booking_id_fk" referencedTableName="booking"
+                                 referencedColumnNames="id" baseTableSchemaName="seat_reservations"
+                                 referencedTableSchemaName="seat_reservations"/>
+        <addForeignKeyConstraint baseTableName="reserved_seats" baseColumnNames="session_id"
+                                 constraintName="reserved_seats_session_id_fk" referencedTableName="session"
+                                 referencedColumnNames="id" baseTableSchemaName="seat_reservations"
+                                 referencedTableSchemaName="seat_reservations"/>
+        <addForeignKeyConstraint baseTableName="reserved_seats" baseColumnNames="place_id"
+                                 constraintName="reserved_seats_place_id_fk" referencedTableName="place"
+                                 referencedColumnNames="id" baseTableSchemaName="seat_reservations"
+                                 referencedTableSchemaName="seat_reservations"/>
+
+    </changeSet>
+</databaseChangeLog>
