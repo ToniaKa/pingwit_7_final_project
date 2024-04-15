@@ -48,7 +48,7 @@
             <column name="age_restriction" type="varchar(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="duration" type="timestamp">
+            <column name="duration" type="integer">
                 <constraints nullable="false"/>
             </column>
         </createTable>
