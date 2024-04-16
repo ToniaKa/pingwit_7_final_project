@@ -9,6 +9,9 @@ public class BookingDto {
     private LocalDateTime timeOfPurchase;
 
     public BookingDto() {
+
+
+
     }
 
     public BookingDto(Integer id, String client, LocalDateTime timeOfPurchase) {
