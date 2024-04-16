@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingFullDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
@@ -20,13 +21,11 @@ public class BookingServiceImpl implements BookingService{
     public BookingServiceImpl(BookingRepository bookingRepository, BookingConverter bookingConverter) {
         this.bookingRepository = bookingRepository;
         this.bookingConverter = bookingConverter;
-
     }
     @Override
     public List<BookingDto> getClientBookings(Integer clientId) {
         Client client=new Client(clientId);
-        Optional<Booking> allByClientId = bookingRepository.findAllByClientId(client);
-        return allByClientId.stream().map(bookingConverter::convertToDto).toList();
+        return bookingRepository.findAllByClientId(client).stream().map(bookingConverter::convertToDto).toList();
     }
     @Override
     public Integer createBooking(CreateBookingDto createBookingDto) {
@@ -36,7 +35,7 @@ public class BookingServiceImpl implements BookingService{
 
     @Override
     public BookingFullDto getBooking(Integer id) {
-        Booking booking = bookingRepository.findById(id).orElseThrow();
+        Booking booking = bookingRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Booking with id not found " + id));
         return bookingConverter.convertToFullDto(booking);
     }
 

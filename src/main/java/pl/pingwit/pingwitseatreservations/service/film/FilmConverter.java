@@ -1,6 +1,7 @@
 package pl.pingwit.pingwitseatreservations.service.film;
 
 import org.springframework.stereotype.Component;
+import pl.pingwit.pingwitseatreservations.controller.film.AgeRestrictionTypeDto;
 import pl.pingwit.pingwitseatreservations.controller.film.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
@@ -33,9 +34,8 @@ public class FilmConverter {
         Film film=new Film();
         film.setName(filmDto.getName());
         film.setYearOfRelease(filmDto.getYearOfRelease());
-        film.setAgeRestriction(AgeRestrictionType.valueOf(filmDto.getAgeRestrictionType().name()));
+        film.setAgeRestriction(AgeRestrictionType.valueOf(filmDto.getAgeRestrictionTypeDto().name()));
         film.setDuration(filmDto.getDuration());
         return film;
-        //return new Film(filmDto.getName(),filmDto.getYearOfRelease(),filmDto.getAgeRestrictionType(),filmDto.getDuration());
     }
 }

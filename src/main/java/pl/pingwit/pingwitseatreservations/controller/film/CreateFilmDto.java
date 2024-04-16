@@ -8,7 +8,7 @@ public class CreateFilmDto {
     private Integer id;
     private Integer name;
     private LocalDate yearOfRelease;
-    private AgeRestrictionType ageRestrictionType;
+    private AgeRestrictionTypeDto ageRestrictionTypeDto;
     private Integer duration;
 
     public Integer getId() {
@@ -35,12 +35,12 @@ public class CreateFilmDto {
         this.yearOfRelease = yearOfRelease;
     }
 
-    public AgeRestrictionType getAgeRestrictionType() {
-        return ageRestrictionType;
+    public AgeRestrictionTypeDto getAgeRestrictionTypeDto() {
+        return ageRestrictionTypeDto;
     }
 
-    public void setAgeRestrictionType(AgeRestrictionType ageRestrictionType) {
-        this.ageRestrictionType = ageRestrictionType;
+    public void setAgeRestrictionTypeDto(AgeRestrictionTypeDto ageRestrictionTypeDto) {
+        this.ageRestrictionTypeDto = ageRestrictionTypeDto;
     }
 
     public Integer getDuration() {

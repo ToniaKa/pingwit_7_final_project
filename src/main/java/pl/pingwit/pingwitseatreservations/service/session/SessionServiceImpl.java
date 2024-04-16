@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.session.CreateSessionDto;
 import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
 import pl.pingwit.pingwitseatreservations.controller.session.UpdateSessionInputDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
 import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
@@ -29,7 +30,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public SessionDto getSession(Integer id) {
-        Session session = sessionRepository.findById(id).orElseThrow();
+        Session session = sessionRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Session with id not found " + id));
         return sessionConverter.convertToDto(session);
     }
 
@@ -44,7 +45,7 @@ public class SessionServiceImpl implements SessionService {
         Film film=new Film();
         film.setId(inputDto.getFilm());
 
-        Session sessionToUpdate = sessionRepository.findById(id).orElseThrow();
+        Session sessionToUpdate = sessionRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Session with id not found " + id));
         sessionToUpdate.setStartDateAndTime(inputDto.getStartDateAndTime());
         sessionToUpdate.setEndDateAndTime(inputDto.getEndDateAndTime());
         sessionToUpdate.setFilm(film);
