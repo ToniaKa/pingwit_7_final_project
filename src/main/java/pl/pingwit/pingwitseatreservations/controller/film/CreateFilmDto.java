@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class CreateFilmDto {
     private Integer id;
-    private String name;
+    private Integer name;
     private LocalDate yearOfRelease;
     private AgeRestrictionType ageRestrictionType;
     private Integer duration;
@@ -19,11 +19,11 @@ public class CreateFilmDto {
         this.id = id;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 

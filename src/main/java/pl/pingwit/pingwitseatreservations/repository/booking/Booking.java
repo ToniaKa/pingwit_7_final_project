@@ -2,6 +2,7 @@ package pl.pingwit.pingwitseatreservations.repository.booking;
 
 import jakarta.persistence.*;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
+import pl.pingwit.pingwitseatreservations.repository.film.Film;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +16,7 @@ public class Booking {
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
-    private Client clientId;
+    private Client client;
     @Column(name = "time_of_purchase")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timeOfPurchase;
@@ -28,12 +29,12 @@ public class Booking {
         this.id = id;
     }
 
-    public Client getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(Client clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public LocalDateTime getTimeOfPurchase() {

@@ -23,7 +23,7 @@ public class Client {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @OneToMany(mappedBy = "clientId")
+    @OneToMany(mappedBy = "client")
 
     private List<Booking> booking;
 
@@ -35,6 +35,9 @@ public class Client {
         this.surname = surname;
         this.email = email;
         this.phone = phone;
+    }
+
+    public Client(Integer clientId) {
     }
 
     public Integer getId() {

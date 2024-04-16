@@ -1,6 +1,5 @@
 package pl.pingwit.pingwitseatreservations.controller.film;
 
-import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
 import pl.pingwit.pingwitseatreservations.controller.session.SessionShortDto;
 import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 public class FilmFullDto {
     private Integer id;
-    private String name;
+    private Integer name;
     private LocalDate yearOfRelease;
     private AgeRestrictionType ageRestrictionType;
     private Integer duration;
@@ -23,11 +22,11 @@ public class FilmFullDto {
         this.id = id;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 

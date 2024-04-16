@@ -8,18 +8,18 @@ import java.util.List;
 
 public class UpdateFilmInputDto {
 
-    private String name;
+    private Integer name;
     private LocalDate yearOfRelease;
     private AgeRestrictionType ageRestrictionType;
     private Integer duration;
     private List<SessionDto> sessions;
 
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 

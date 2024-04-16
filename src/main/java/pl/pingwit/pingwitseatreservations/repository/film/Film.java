@@ -15,7 +15,7 @@ public class Film {
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
-    private String name;
+    private Integer name;
     @Column(name = "year_of_release")
     private LocalDate yearOfRelease;
     @Enumerated(value = EnumType.STRING)
@@ -30,7 +30,7 @@ public class Film {
     public Film() {
     }
 
-    public Film(String name, LocalDate yearOfRelease, AgeRestrictionType ageRestriction, Integer duration) {
+    public Film(Integer name, LocalDate yearOfRelease, AgeRestrictionType ageRestriction, Integer duration) {
         this.name = name;
         this.yearOfRelease = yearOfRelease;
         this.ageRestriction = ageRestriction;
@@ -48,11 +48,11 @@ public class Film {
         this.id = id;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 
