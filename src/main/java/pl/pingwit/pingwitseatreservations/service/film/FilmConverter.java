@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import pl.pingwit.pingwitseatreservations.controller.film.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
+import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
 
@@ -29,6 +30,12 @@ public class FilmConverter {
         return result;
     }
     public Film convertToEntity (CreateFilmDto filmDto){
-        return new Film(filmDto.getName(),filmDto.getYearOfRelease(),filmDto.getAgeRestrictionType(),filmDto.getDuration());
+        Film film=new Film();
+        film.setName(filmDto.getName());
+        film.setYearOfRelease(filmDto.getYearOfRelease());
+        film.setAgeRestriction(AgeRestrictionType.valueOf(filmDto.getAgeRestrictionType().name()));
+        film.setDuration(filmDto.getDuration());
+        return film;
+        //return new Film(filmDto.getName(),filmDto.getYearOfRelease(),filmDto.getAgeRestrictionType(),filmDto.getDuration());
     }
 }

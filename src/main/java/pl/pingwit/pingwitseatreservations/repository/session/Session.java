@@ -14,10 +14,13 @@ public class Session {
     @Column(name = "id")
     private Integer id;
     @Column(name = "start_date_and_time")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime startDateAndTime;
     @Column(name = "end_date_and_time")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime endDateAndTime;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "film_id")
     private Film film;
 
     public Session() {

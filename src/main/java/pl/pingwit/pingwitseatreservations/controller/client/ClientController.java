@@ -26,6 +26,6 @@ public class ClientController {
     public Integer createClient(@RequestBody CreateClientDto clientDto){return clientService.createClient(clientDto);}
     @PutMapping("/{id}")
     public void updateClient(@RequestBody UpdateClientInputDto inputDto,@PathVariable(name = "id") Integer id){clientService.updateClient(id,inputDto);}
-    @GetMapping("/{id}/booking")
-    public BookingDto getBooking(@PathVariable(name = "id") Integer id){return  bookingService.getBooking(id);}
+    @GetMapping("/{clientId}/booking")
+    public List<BookingDto> getClientBookings(@PathVariable(name = "clientId") Integer clientId){return bookingService.getClientBookings(clientId);}
 }

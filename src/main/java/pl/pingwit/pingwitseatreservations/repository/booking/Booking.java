@@ -14,8 +14,10 @@ public class Booking {
     @Column(name = "id")
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
     private Client clientId;
     @Column(name = "time_of_purchase")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timeOfPurchase;
 
     public Integer getId() {

@@ -4,8 +4,9 @@ import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
-import pl.pingwit.pingwitseatreservations.repository.client.Client;
-import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingServiceImpl implements BookingService{
@@ -19,8 +20,9 @@ public class BookingServiceImpl implements BookingService{
 
     }
     @Override
-    public BookingDto getBooking(Integer id) {
-        Booking booking = bookingRepository.findById(id).orElseThrow();
-        return bookingConverter.convertToDto(booking);
+    public List<BookingDto> getClientBookings(Integer clientId) {
+        Optional<Booking> allByClientId = bookingRepository.findAllByClientId(clientId);
+        return allByClientId.stream().map(bookingConverter::convertToDto).toList();
     }
+
 }
