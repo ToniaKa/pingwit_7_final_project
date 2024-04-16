@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
+import pl.pingwit.pingwitseatreservations.repository.client.Client;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,8 @@ public class BookingServiceImpl implements BookingService{
     }
     @Override
     public List<BookingDto> getClientBookings(Integer clientId) {
-        Optional<Booking> allByClientId = bookingRepository.findAllByClientId(clientId);
+        Client client = new Client(clientId);
+        Optional<Booking> allByClientId = bookingRepository.findAllByClient(client);
         return allByClientId.stream().map(bookingConverter::convertToDto).toList();
     }
 

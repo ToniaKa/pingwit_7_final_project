@@ -8,11 +8,11 @@ import pl.pingwit.pingwitseatreservations.repository.session.Session;
 import java.util.List;
 
 @Entity
-@Table(name = "client",schema = "seat_reservations")
+@Table(name = "client", schema = "seat_reservations")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id_gen")
-    @SequenceGenerator(name = "client_id_gen", sequenceName = "client_id_seq",schema = "seat_reservations", allocationSize = 1)
+    @SequenceGenerator(name = "client_id_gen", sequenceName = "client_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
@@ -23,11 +23,14 @@ public class Client {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @OneToMany(mappedBy = "clientId")
-
+    @OneToMany(mappedBy = "client")
     private List<Booking> booking;
 
     public Client() {
+    }
+
+    public Client(Integer id) {
+        this.id = id;
     }
 
     public Client(String name, String surname, String email, String phone) {
@@ -76,6 +79,7 @@ public class Client {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     public List<Booking> getBooking() {
         return booking;
     }

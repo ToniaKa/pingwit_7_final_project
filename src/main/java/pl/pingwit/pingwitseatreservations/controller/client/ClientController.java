@@ -7,6 +7,7 @@ import pl.pingwit.pingwitseatreservations.service.booking.BookingService;
 import pl.pingwit.pingwitseatreservations.service.client.ClientService;
 
 import java.util.List;
+
 @Tag(name = "Client API")
 @RestController
 @RequestMapping("/client")
@@ -18,14 +19,29 @@ public class ClientController {
         this.clientService = clientService;
         this.bookingService = bookingService;
     }
+
     @GetMapping
-    public List<ClientDto> listClients(){return clientService.listClients();}
+    public List<ClientDto> listClients() {
+        return clientService.listClients();
+    }
+
     @GetMapping("/{id}")
-    public ClientFullDto getClient(@PathVariable(name = "id") Integer id){return clientService.getClient(id);}
+    public ClientFullDto getClient(@PathVariable(name = "id") Integer id) {
+        return clientService.getClient(id);
+    }
+
     @PostMapping
-    public Integer createClient(@RequestBody CreateClientDto clientDto){return clientService.createClient(clientDto);}
+    public Integer createClient(@RequestBody CreateClientDto clientDto) {
+        return clientService.createClient(clientDto);
+    }
+
     @PutMapping("/{id}")
-    public void updateClient(@RequestBody UpdateClientInputDto inputDto,@PathVariable(name = "id") Integer id){clientService.updateClient(id,inputDto);}
+    public void updateClient(@RequestBody UpdateClientInputDto inputDto, @PathVariable(name = "id") Integer id) {
+        clientService.updateClient(id, inputDto);
+    }
+
     @GetMapping("/{clientId}/booking")
-    public List<BookingDto> getClientBookings(@PathVariable(name = "clientId") Integer clientId){return bookingService.getClientBookings(clientId);}
+    public List<BookingDto> getClientBookings(@PathVariable(name = "clientId") Integer clientId) {
+        return bookingService.getClientBookings(clientId);
+    }
 }
