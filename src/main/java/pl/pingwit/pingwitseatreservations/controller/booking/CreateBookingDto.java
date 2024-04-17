@@ -1,9 +1,13 @@
 package pl.pingwit.pingwitseatreservations.controller.booking;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CreateBookingDto {
+
     private Integer client;
     private LocalDateTime timeOfPurchase;
+    private List<CreateReservedSeatDto> reservedSeats;
 
     public Integer getClient() {
         return client;
@@ -19,5 +23,13 @@ public class CreateBookingDto {
 
     public void setTimeOfPurchase(LocalDateTime timeOfPurchase) {
         this.timeOfPurchase = timeOfPurchase;
+    }
+
+    public List<CreateReservedSeatDto> getReservedSeats() {
+        return reservedSeats;
+    }
+
+    public void setReservedSeats(List<CreateReservedSeatDto> reservedSeats) {
+        this.reservedSeats = reservedSeats;
     }
 }

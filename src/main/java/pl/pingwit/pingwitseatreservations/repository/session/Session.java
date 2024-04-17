@@ -26,6 +26,10 @@ public class Session {
     public Session() {
     }
 
+    public Session(Integer id) {
+        this.id = id;
+    }
+
     public Session(LocalDateTime startDateAndTime, LocalDateTime endDateAndTime) {
         this.startDateAndTime = startDateAndTime;
         this.endDateAndTime = endDateAndTime;
