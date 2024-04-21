@@ -1,17 +1,19 @@
 package pl.pingwit.pingwitseatreservations.repository.booking;
 
 import jakarta.persistence.*;
+import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
-import pl.pingwit.pingwitseatreservations.repository.film.Film;
+import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "booking",schema = "seat_reservations")
+@Table(name = "booking", schema = "seat_reservations")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_id_gen")
-    @SequenceGenerator(name = "booking_id_gen", sequenceName = "booking_id_seq",schema = "seat_reservations", allocationSize = 1)
+    @SequenceGenerator(name = "booking_id_gen", sequenceName = "booking_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -20,6 +22,8 @@ public class Booking {
     @Column(name = "time_of_purchase")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timeOfPurchase;
+    @OneToMany(mappedBy = "booking")
+    private List<ReservedSeat> reservedSeats;
 
     public Integer getId() {
         return id;
@@ -43,5 +47,13 @@ public class Booking {
 
     public void setTimeOfPurchase(LocalDateTime timeOfPurchase) {
         this.timeOfPurchase = timeOfPurchase;
+    }
+
+    public List<ReservedSeat> getReservedSeats() {
+        return reservedSeats;
+    }
+
+    public void setReservedSeats(List<ReservedSeat> reservedSeats) {
+        this.reservedSeats = reservedSeats;
     }
 }

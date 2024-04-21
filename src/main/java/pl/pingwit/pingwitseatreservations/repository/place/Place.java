@@ -19,6 +19,10 @@ public class Place {
     public Place() {
     }
 
+    public Place(Integer id) {
+        this.id = id;
+    }
+
     public Place(Integer row, Integer number) {
         this.row = row;
         this.number = number;

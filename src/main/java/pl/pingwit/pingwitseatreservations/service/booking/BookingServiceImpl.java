@@ -1,5 +1,6 @@
 package pl.pingwit.pingwitseatreservations.service.booking;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingFullDto;
@@ -7,9 +8,11 @@ import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
+import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class BookingServiceImpl implements BookingService{
@@ -30,7 +33,7 @@ public class BookingServiceImpl implements BookingService{
     }
     @Override
     public Integer createBooking(CreateBookingDto createBookingDto) {
-        Booking savedBooking = bookingRepository.save(bookingConverter.createBooking(createBookingDto));
+        Booking savedBooking = bookingRepository.save(bookingConverter.convertToEntity(createBookingDto));
         return savedBooking.getId();
     }
 
