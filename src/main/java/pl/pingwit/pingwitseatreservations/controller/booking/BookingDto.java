@@ -9,12 +9,12 @@ public class BookingDto {
     private Integer id;
     private String client;
     private LocalDateTime timeOfPurchase;
-    private List<CreateReservedSeatDto> reservedSeats;
+    private List<ReservedSeatDto> reservedSeats;
 
     public BookingDto() {
     }
 
-    public BookingDto(Integer id, String client, LocalDateTime timeOfPurchase, List<CreateReservedSeatDto> reservedSeats) {
+    public BookingDto(Integer id, String client, LocalDateTime timeOfPurchase, List<ReservedSeatDto> reservedSeats) {
         this.id = id;
         this.client = client;
         this.timeOfPurchase = timeOfPurchase;
@@ -45,11 +45,11 @@ public class BookingDto {
         this.timeOfPurchase = timeOfPurchase;
     }
 
-    public List<CreateReservedSeatDto> getReservedSeats() {
+    public List<ReservedSeatDto> getReservedSeats() {
         return reservedSeats;
     }
 
-    public void setReservedSeats(List<CreateReservedSeatDto> reservedSeats) {
+    public void setReservedSeats(List<ReservedSeatDto> reservedSeats) {
         this.reservedSeats = reservedSeats;
     }
 
