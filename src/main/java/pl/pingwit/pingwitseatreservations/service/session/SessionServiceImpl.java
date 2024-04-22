@@ -19,11 +19,12 @@ import java.util.List;
 public class SessionServiceImpl implements SessionService {
     private final SessionRepository sessionRepository;
     private final SessionConverter sessionConverter;
-    private FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
 
-    public SessionServiceImpl(SessionRepository sessionRepository, SessionConverter sessionConverter) {
+    public SessionServiceImpl(SessionRepository sessionRepository, SessionConverter sessionConverter, FilmRepository filmRepository) {
         this.sessionRepository = sessionRepository;
         this.sessionConverter = sessionConverter;
+        this.filmRepository = filmRepository;
     }
 
     @Override
@@ -51,8 +52,6 @@ public class SessionServiceImpl implements SessionService {
                 .filter(session -> intervalsIntersect(sessionStart, sessionEnd, session.getStartDateAndTime(), session.getEndDateAndTime()))
                 .map(session -> "Session intersects with session " + session.getId())
                 .toList();
-
-
 
         Session savedSession = sessionRepository.save(sessionConverter.createSession(createSessionDto));
         return savedSession.getId();

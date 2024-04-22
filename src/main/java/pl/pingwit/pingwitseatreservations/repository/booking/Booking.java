@@ -14,18 +14,22 @@ import static jakarta.persistence.CascadeType.*;
 @Entity
 @Table(name = "booking", schema = "seat_reservations")
 public class Booking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_id_gen")
     @SequenceGenerator(name = "booking_id_gen", sequenceName = "booking_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
+
     @Column(name = "time_of_purchase")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timeOfPurchase;
+
     @OneToMany(mappedBy = "booking")
     private List<ReservedSeat> reservedSeats;
 

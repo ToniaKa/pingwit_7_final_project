@@ -13,12 +13,15 @@ public class ReservedSeat {
     @SequenceGenerator(name = "reserved_seats_id_gen", sequenceName = "reserved_seats_id_seq",schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id")
     private Booking booking;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "session_id")
     private Session session;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "place_id")
     private Place place;

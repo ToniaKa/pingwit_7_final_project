@@ -14,17 +14,21 @@ public class Film {
     @SequenceGenerator(name = "film_id_gen", sequenceName = "film_id_seq",schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "year_of_release")
     private LocalDate yearOfRelease;
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "age_restriction")
     private AgeRestrictionType ageRestriction;
+
     @Column(name = "duration")
     private Integer duration;
-    @OneToMany(mappedBy = "film")
 
+    @OneToMany(mappedBy = "film")
    private List<Session> sessions;
 
     public Film() {
@@ -35,9 +39,6 @@ public class Film {
         this.yearOfRelease = yearOfRelease;
         this.ageRestriction = ageRestriction;
         this.duration = duration;
-    }
-
-    public Film(Integer id, String name, LocalDate yearOfRelease, AgeRestrictionType ageRestrictionType, Integer duration) {
     }
 
     public Integer getId() {

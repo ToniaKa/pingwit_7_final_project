@@ -6,22 +6,28 @@ import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.ReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
+import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
+import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
 import pl.pingwit.pingwitseatreservations.repository.place.Place;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
+import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class BookingConverter {
 
     private final PlaceConverter placeConverter;
+    private final ClientRepository clientRepository;
+    private final SessionRepository sessionRepository;
 
-    public BookingConverter(PlaceConverter placeConverter) {
+    public BookingConverter(PlaceConverter placeConverter, ClientRepository clientRepository, SessionRepository sessionRepository) {
         this.placeConverter = placeConverter;
+        this.clientRepository = clientRepository;
+        this.sessionRepository = sessionRepository;
     }
 
     public BookingDto convertToDto(Booking booking) {
@@ -43,7 +49,7 @@ public class BookingConverter {
     }
 
     public Booking convertToEntity(CreateBookingDto createBookingDto) {
-        Client client = new Client(createBookingDto.getClient());
+        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow();
         Booking booking = new Booking();
 
         booking.setClient(client);
@@ -51,7 +57,7 @@ public class BookingConverter {
         Session session = createBookingDto.getReservedSeats().stream()
                 .map(CreateReservedSeatDto::getSessionId)
                 .findFirst()
-                .map(Session::new)
+                .flatMap(sessionRepository::findById)
                 .orElseThrow();
 
         List<ReservedSeat> reservedSeats = createBookingDto.getReservedSeats().stream()

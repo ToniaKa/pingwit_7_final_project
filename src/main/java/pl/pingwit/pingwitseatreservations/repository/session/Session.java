@@ -13,12 +13,15 @@ public class Session {
     @SequenceGenerator(name = "session_id_gen", sequenceName = "session_id_seq",schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "start_date_and_time")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime startDateAndTime;
+
     @Column(name = "end_date_and_time")
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime endDateAndTime;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "film_id")
     private Film film;
