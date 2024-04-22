@@ -1,5 +1,6 @@
 package pl.pingwit.pingwitseatreservations.service.film;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.film.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmDto;
@@ -14,7 +15,7 @@ import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
 
 import java.util.List;
-
+@Transactional
 @Service
 public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;

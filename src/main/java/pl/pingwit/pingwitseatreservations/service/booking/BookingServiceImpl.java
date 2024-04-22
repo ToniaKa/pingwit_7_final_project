@@ -1,5 +1,6 @@
 package pl.pingwit.pingwitseatreservations.service.booking;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
@@ -9,7 +10,7 @@ import pl.pingwit.pingwitseatreservations.repository.client.Client;
 
 import java.util.List;
 import java.util.Optional;
-
+@Transactional
 @Service
 public class BookingServiceImpl implements BookingService {
 

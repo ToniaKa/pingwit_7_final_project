@@ -1,5 +1,6 @@
 package pl.pingwit.pingwitseatreservations.service.session;
 
+import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.session.CreateSessionDto;
@@ -13,7 +14,7 @@ import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+@Transactional
 @Service
 public class SessionServiceImpl implements SessionService {
     private final SessionRepository sessionRepository;

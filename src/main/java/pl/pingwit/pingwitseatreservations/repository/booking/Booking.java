@@ -1,12 +1,15 @@
 package pl.pingwit.pingwitseatreservations.repository.booking;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "booking", schema = "seat_reservations")
@@ -17,6 +20,7 @@ public class Booking {
     @Column(name = "id")
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
     @Column(name = "time_of_purchase")
