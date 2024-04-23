@@ -22,7 +22,6 @@ public class Booking {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
 
@@ -30,7 +29,7 @@ public class Booking {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime timeOfPurchase;
 
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = ALL)
     private List<ReservedSeat> reservedSeats;
 
     public Integer getId() {
