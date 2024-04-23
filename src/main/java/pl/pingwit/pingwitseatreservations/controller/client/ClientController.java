@@ -3,8 +3,6 @@ package pl.pingwit.pingwitseatreservations.controller.client;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingFullDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
 import pl.pingwit.pingwitseatreservations.service.booking.BookingService;
 import pl.pingwit.pingwitseatreservations.service.client.ClientService;
 

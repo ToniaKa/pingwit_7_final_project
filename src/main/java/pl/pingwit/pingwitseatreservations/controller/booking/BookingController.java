@@ -14,8 +14,14 @@ public class BookingController {
     public BookingController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
+
     @GetMapping("/{id}")
-    public BookingFullDto getBooking(@PathVariable (name = "id") Integer id){return bookingService.getBooking(id);}
+    public BookingDto getBooking(@PathVariable(name = "id") Integer id) {
+        return bookingService.getBooking(id);
+    }
+
     @PostMapping
-    public Integer createBooking(@RequestBody CreateBookingDto createBookingDto){return bookingService.createBooking(createBookingDto);}
+    public Integer createBooking(@RequestBody CreateBookingDto createBookingDto) {
+        return bookingService.createBooking(createBookingDto);
+    }
 }
