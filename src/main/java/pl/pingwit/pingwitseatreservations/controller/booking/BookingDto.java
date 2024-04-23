@@ -1,4 +1,5 @@
 package pl.pingwit.pingwitseatreservations.controller.booking;
+import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 
@@ -10,6 +11,7 @@ public class BookingDto {
     private String client;
     private LocalDateTime timeOfPurchase;
     private List<ReservedSeatDto> reservedSeats;
+
 
     public BookingDto() {
     }

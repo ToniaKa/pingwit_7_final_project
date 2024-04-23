@@ -1,12 +1,14 @@
 package pl.pingwit.pingwitseatreservations.controller.booking;
 
 import pl.pingwit.pingwitseatreservations.controller.place.PlaceDto;
-import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
+import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
 
 public class ReservedSeatDto {
 
     private Integer id;
-    private Integer sessionId;
+
+    private SessionDto filmSession;
+
     private PlaceDto place;
 
     public Integer getId() {
@@ -17,6 +19,14 @@ public class ReservedSeatDto {
         this.id = id;
     }
 
+    public SessionDto getFilmSession() {
+        return filmSession;
+    }
+
+    public void setFilmSession(SessionDto filmSession) {
+        this.filmSession = filmSession;
+    }
+
     public PlaceDto getPlace() {
         return place;
     }
@@ -25,11 +35,5 @@ public class ReservedSeatDto {
         this.place = place;
     }
 
-    public Integer getSessionId() {
-        return sessionId;
-    }
 
-    public void setSessionId(Integer sessionId) {
-        this.sessionId = sessionId;
-    }
 }
