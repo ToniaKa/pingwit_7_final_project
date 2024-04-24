@@ -1,5 +1,6 @@
 package pl.pingwit.pingwitseatreservations.service.place;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.place.CreatePlaceDto;
 import pl.pingwit.pingwitseatreservations.controller.place.PlaceDto;
@@ -7,7 +8,7 @@ import pl.pingwit.pingwitseatreservations.repository.place.Place;
 import pl.pingwit.pingwitseatreservations.repository.place.PlaceRepository;
 
 import java.util.List;
-
+@Transactional
 @Service
 public class PlaceServiceImpl implements PlaceService{
     private final PlaceRepository placeRepository;

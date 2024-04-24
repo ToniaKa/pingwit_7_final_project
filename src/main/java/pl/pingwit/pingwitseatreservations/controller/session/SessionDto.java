@@ -6,12 +6,12 @@ public class SessionDto {
     private Integer id;
     private LocalDateTime startDateAndTime;
     private LocalDateTime endDateAndTime;
-    private Integer film;
+    private String film;
 
     public SessionDto() {
     }
 
-    public SessionDto(Integer id, LocalDateTime startDateAndTime, LocalDateTime endDateAndTime, Integer film) {
+    public SessionDto(Integer id, LocalDateTime startDateAndTime, LocalDateTime endDateAndTime, String film) {
         this.id = id;
         this.startDateAndTime = startDateAndTime;
         this.endDateAndTime = endDateAndTime;
@@ -42,11 +42,11 @@ public class SessionDto {
         this.endDateAndTime = endDateAndTime;
     }
 
-    public Integer getFilm() {
+    public String getFilm() {
         return film;
     }
 
-    public void setFilm(Integer film) {
+    public void setFilm(String film) {
         this.film = film;
     }
 }

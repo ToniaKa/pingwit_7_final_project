@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class FilmDto {
     private Integer id;
-    private Integer name;
+    private String name;
     private LocalDate yearOfRelease;
 
-    public FilmDto(Integer id, Integer name, LocalDate yearOfRelease) {
+    public FilmDto(Integer id, String name, LocalDate yearOfRelease) {
         this.id = id;
         this.name = name;
         this.yearOfRelease = yearOfRelease;
@@ -21,11 +21,11 @@ public class FilmDto {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 

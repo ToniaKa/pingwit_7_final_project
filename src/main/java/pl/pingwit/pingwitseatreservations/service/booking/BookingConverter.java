@@ -2,35 +2,79 @@ package pl.pingwit.pingwitseatreservations.service.booking;
 
 import org.springframework.stereotype.Component;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingFullDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.ReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
-import pl.pingwit.pingwitseatreservations.repository.film.Film;
+import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
+import pl.pingwit.pingwitseatreservations.repository.place.Place;
+import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
+import pl.pingwit.pingwitseatreservations.repository.session.Session;
+import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
+import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
+import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
+
+import java.util.List;
 
 @Component
 public class BookingConverter {
-    public BookingDto convertToDto(Booking booking){
-        BookingDto bookingDto=new BookingDto();
+
+    private final PlaceConverter placeConverter;
+    private final ClientRepository clientRepository;
+    private final SessionRepository sessionRepository;
+    private final SessionConverter sessionConverter;
+
+
+    public BookingConverter(PlaceConverter placeConverter, ClientRepository clientRepository, SessionRepository sessionRepository, SessionConverter sessionConverter) {
+        this.placeConverter = placeConverter;
+        this.clientRepository = clientRepository;
+        this.sessionRepository = sessionRepository;
+
+        this.sessionConverter = sessionConverter;
+    }
+
+    public BookingDto convertToDto(Booking booking) {
+        BookingDto bookingDto = new BookingDto();
         bookingDto.setId(booking.getId());
         bookingDto.setClient(booking.getClient().getName());
         bookingDto.setTimeOfPurchase(booking.getTimeOfPurchase());
+        bookingDto.setReservedSeats(booking.getReservedSeats().stream()
+                .map(this::toReservedSeatDto)
+                .toList());
+
         return bookingDto;
     }
-    public Booking createBooking (CreateBookingDto createBookingDto){
-        Client client=new Client();
-        client.setId(createBookingDto.getClient());
 
-        Booking entity=new Booking();
-        entity.setClient(client);
-        entity.setTimeOfPurchase(createBookingDto.getTimeOfPurchase());
-        return entity;
+    private ReservedSeatDto toReservedSeatDto(ReservedSeat reservedSeat) {
+        ReservedSeatDto reservedSeatDto = new ReservedSeatDto();
+        reservedSeatDto.setId(reservedSeat.getId());
+        reservedSeatDto.setPlace(placeConverter.convertToDto(reservedSeat.getPlace()));
+        reservedSeatDto.setFilmSession(sessionConverter.convertToDto(reservedSeat.getSession()));
+        return reservedSeatDto;
     }
-    public BookingFullDto convertToFullDto (Booking booking){
-        BookingFullDto result=new BookingFullDto();
-        result.setId(booking.getId());
-        result.setClient(booking.getClient().getName());
-        result.setTimeOfPurchase(booking.getTimeOfPurchase());
-        return result;
+
+    public Booking convertToEntity(CreateBookingDto createBookingDto) {
+        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow();
+        Booking booking = new Booking();
+
+        booking.setClient(client);
+        booking.setTimeOfPurchase(createBookingDto.getTimeOfPurchase());
+        Session session = createBookingDto.getReservedSeats().stream()
+                .map(CreateReservedSeatDto::getSessionId)
+                .findFirst()
+                .flatMap(sessionRepository::findById)
+                .orElseThrow();
+
+        List<ReservedSeat> reservedSeats = createBookingDto.getReservedSeats().stream()
+                .map(reservedSeatDto -> {
+                    Place place = new Place(reservedSeatDto.getPlaceId());
+                    return new ReservedSeat(booking, session, place);
+                })
+                .toList();
+
+        booking.setReservedSeats(reservedSeats);
+        return booking;
     }
+
 }

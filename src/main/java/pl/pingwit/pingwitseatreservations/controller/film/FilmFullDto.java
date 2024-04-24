@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FilmFullDto {
     private Integer id;
-    private Integer name;
+    private String name;
     private LocalDate yearOfRelease;
     private AgeRestrictionType ageRestrictionType;
     private Integer duration;
@@ -22,11 +22,11 @@ public class FilmFullDto {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 
