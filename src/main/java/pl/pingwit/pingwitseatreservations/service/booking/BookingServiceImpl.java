@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
@@ -20,7 +21,6 @@ public class BookingServiceImpl implements BookingService {
     public BookingServiceImpl(BookingRepository bookingRepository, BookingConverter bookingConverter) {
         this.bookingRepository = bookingRepository;
         this.bookingConverter = bookingConverter;
-
     }
 
     @Override

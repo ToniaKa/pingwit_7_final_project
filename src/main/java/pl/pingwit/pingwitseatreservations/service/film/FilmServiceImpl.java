@@ -8,6 +8,7 @@ import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
 import pl.pingwit.pingwitseatreservations.controller.film.UpdateFilmInputDto;
 import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
 import pl.pingwit.pingwitseatreservations.controller.session.SessionShortDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.repository.film.FilmRepository;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
@@ -39,7 +40,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public FilmFullDto getFilm(Integer id) {
-        Film film = filmRepository.findById(id).orElseThrow();
+        Film film = filmRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Film with id not found " + id));
         return filmConverter.convertToFullDto(film);
     }
 
@@ -51,7 +52,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public void updateFilm(Integer id, UpdateFilmInputDto inputDto) {
-        Film filmToUpdate = filmRepository.findById(id).orElseThrow();
+        Film filmToUpdate = filmRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Film with id not found " + id));
         filmToUpdate.setName(inputDto.getName());
         filmToUpdate.setYearOfRelease(inputDto.getYearOfRelease());
         filmToUpdate.setAgeRestriction(inputDto.getAgeRestrictionType());

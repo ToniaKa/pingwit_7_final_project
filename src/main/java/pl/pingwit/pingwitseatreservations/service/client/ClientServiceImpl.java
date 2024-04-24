@@ -6,6 +6,7 @@ import pl.pingwit.pingwitseatreservations.controller.client.ClientDto;
 import pl.pingwit.pingwitseatreservations.controller.client.ClientFullDto;
 import pl.pingwit.pingwitseatreservations.controller.client.CreateClientDto;
 import pl.pingwit.pingwitseatreservations.controller.client.UpdateClientInputDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
 
@@ -29,7 +30,7 @@ public class ClientServiceImpl implements ClientService{
     }
     @Override
     public ClientFullDto getClient(Integer id) {
-        Client client = clientRepository.findById(id).orElseThrow();
+        Client client = clientRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Client with id not found " + id));
         return clientConverter.convertToFullDto(client);
     }
 
@@ -41,7 +42,7 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public void updateClient(Integer id, UpdateClientInputDto inputDto) {
-        Client clientToUpdate = clientRepository.findById(id).orElseThrow();
+        Client clientToUpdate = clientRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Client with id not found " + id));
         clientToUpdate.setName(inputDto.getName());
         clientToUpdate.setSurname(inputDto.getSurname());
         clientToUpdate.setEmail(inputDto.getEmail());
