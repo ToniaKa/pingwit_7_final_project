@@ -11,12 +11,10 @@ import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
 import pl.pingwit.pingwitseatreservations.repository.place.Place;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
-import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeatsRepository;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
 import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
-import pl.pingwit.pingwitseatreservations.validator.PlaceValidator;
 
 import java.util.List;
 
