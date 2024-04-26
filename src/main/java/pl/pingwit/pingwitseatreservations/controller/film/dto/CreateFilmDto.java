@@ -1,6 +1,4 @@
-package pl.pingwit.pingwitseatreservations.controller.film;
-
-import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
+package pl.pingwit.pingwitseatreservations.controller.film.dto;
 
 import java.time.LocalDate;
 

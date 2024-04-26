@@ -2,17 +2,17 @@ package pl.pingwit.pingwitseatreservations.service.session;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import pl.pingwit.pingwitseatreservations.controller.session.CreateSessionDto;
-import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
-import pl.pingwit.pingwitseatreservations.controller.session.UpdateSessionInputDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.CreateSessionDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.SessionDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.UpdateSessionInputDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
-import pl.pingwit.pingwitseatreservations.repository.film.FilmRepository;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
 import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import pl.pingwit.pingwitseatreservations.validator.SessionValidator;
 
 import java.util.List;
+
 @Transactional
 @Service
 public class SessionServiceImpl implements SessionService {
@@ -35,7 +35,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public SessionDto getSession(Integer id) {
-        Session session = sessionRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Session with id not found " + id));
+        Session session = sessionRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Session with id not found " + id));
         return sessionConverter.convertToDto(session);
     }
 
@@ -52,7 +52,7 @@ public class SessionServiceImpl implements SessionService {
         Film film = new Film();
         film.setId(inputDto.getFilm());
 
-        Session sessionToUpdate = sessionRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Session with id not found " + id));
+        Session sessionToUpdate = sessionRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Session with id not found " + id));
         sessionToUpdate.setStartDateAndTime(inputDto.getStartDateAndTime());
         sessionToUpdate.setEndDateAndTime(inputDto.getEndDateAndTime());
         sessionToUpdate.setFilm(film);

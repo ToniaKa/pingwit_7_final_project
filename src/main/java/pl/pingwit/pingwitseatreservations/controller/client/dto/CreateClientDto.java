@@ -1,17 +1,11 @@
-package pl.pingwit.pingwitseatreservations.controller.client;
+package pl.pingwit.pingwitseatreservations.controller.client.dto;
 
-import jakarta.persistence.Column;
-
-public class ClientDto {
+public class CreateClientDto {
     private Integer id;
     private String name;
     private String surname;
-
-    public ClientDto(Integer id, String name, String surname) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-    }
+    private String email;
+    private String phone;
 
     public Integer getId() {
         return id;
@@ -35,5 +29,21 @@ public class ClientDto {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

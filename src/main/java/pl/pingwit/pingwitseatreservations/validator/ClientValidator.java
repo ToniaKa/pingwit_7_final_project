@@ -2,13 +2,14 @@ package pl.pingwit.pingwitseatreservations.validator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.client.CreateClientDto;
-import pl.pingwit.pingwitseatreservations.controller.client.UpdateClientInputDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.CreateClientDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.UpdateClientInputDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationsValidationException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
 @Component
 public class ClientValidator {
 
@@ -36,7 +37,8 @@ public class ClientValidator {
             throw new SeatReservationsValidationException("Client data is invalid ", errors);
         }
     }
-    public void validateOnUpdate(UpdateClientInputDto inputDto){
+
+    public void validateOnUpdate(UpdateClientInputDto inputDto) {
         List<String> errors = new ArrayList<>();
 
         if (StringUtils.isBlank(inputDto.getName())) {

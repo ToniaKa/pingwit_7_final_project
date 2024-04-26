@@ -1,10 +1,10 @@
 package pl.pingwit.pingwitseatreservations.service.booking;
 
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.ReservedSeatDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateReservedSeatDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.ReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
@@ -58,7 +58,7 @@ public class BookingConverter {
 
     public Booking convertToEntity(CreateBookingDto createBookingDto) {
 
-        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow(()-> new SeatReservNotFoundException("Client not found"));
+        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow(() -> new SeatReservNotFoundException("Client not found"));
         Booking booking = new Booking();
 
         booking.setClient(client);
@@ -67,7 +67,7 @@ public class BookingConverter {
                 .map(CreateReservedSeatDto::getSessionId)
                 .findFirst()
                 .flatMap(sessionRepository::findById)
-                .orElseThrow(()-> new SeatReservNotFoundException("Session not found"));
+                .orElseThrow(() -> new SeatReservNotFoundException("Session not found"));
 
         List<ReservedSeat> reservedSeats = createBookingDto.getReservedSeats().stream()
                 .map(reservedSeatDto -> {

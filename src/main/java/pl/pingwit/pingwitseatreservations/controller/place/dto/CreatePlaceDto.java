@@ -1,4 +1,4 @@
-package pl.pingwit.pingwitseatreservations.controller.place;
+package pl.pingwit.pingwitseatreservations.controller.place.dto;
 
 public class CreatePlaceDto {
     private Integer id;

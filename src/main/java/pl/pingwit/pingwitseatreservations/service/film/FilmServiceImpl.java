@@ -2,16 +2,16 @@ package pl.pingwit.pingwitseatreservations.service.film;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import pl.pingwit.pingwitseatreservations.controller.film.CreateFilmDto;
-import pl.pingwit.pingwitseatreservations.controller.film.FilmDto;
-import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
-import pl.pingwit.pingwitseatreservations.controller.film.UpdateFilmInputDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.CreateFilmDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmFullDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.UpdateFilmInputDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.repository.film.FilmRepository;
 
-
 import java.util.List;
+
 @Transactional
 @Service
 public class FilmServiceImpl implements FilmService {
@@ -32,7 +32,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public FilmFullDto getFilm(Integer id) {
-        Film film = filmRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Film with id not found " + id));
+        Film film = filmRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Film with id not found " + id));
         return filmConverter.convertToFullDto(film);
     }
 
@@ -44,7 +44,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public void updateFilm(Integer id, UpdateFilmInputDto inputDto) {
-        Film filmToUpdate = filmRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Film with id not found " + id));
+        Film filmToUpdate = filmRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Film with id not found " + id));
         filmToUpdate.setName(inputDto.getName());
         filmToUpdate.setYearOfRelease(inputDto.getYearOfRelease());
         filmToUpdate.setAgeRestriction(inputDto.getAgeRestrictionType());

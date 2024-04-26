@@ -1,15 +1,13 @@
 package pl.pingwit.pingwitseatreservations.repository.booking;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static jakarta.persistence.CascadeType.*;
+import static jakarta.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "booking", schema = "seat_reservations")

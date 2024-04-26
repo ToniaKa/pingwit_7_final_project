@@ -1,10 +1,11 @@
-package pl.pingwit.pingwitseatreservations.controller.session;
+package pl.pingwit.pingwitseatreservations.controller.session.dto;
 
 import java.time.LocalDateTime;
 
 public class SessionShortDto {
     private Integer id;
     private LocalDateTime startDateAndTime;
+
     public Integer getId() {
         return id;
     }

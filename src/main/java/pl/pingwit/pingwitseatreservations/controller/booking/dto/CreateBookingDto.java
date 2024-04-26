@@ -1,4 +1,5 @@
-package pl.pingwit.pingwitseatreservations.controller.booking;
+package pl.pingwit.pingwitseatreservations.controller.booking.dto;
+
 import java.time.LocalDateTime;
 import java.util.List;
 

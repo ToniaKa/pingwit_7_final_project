@@ -2,7 +2,8 @@ package pl.pingwit.pingwitseatreservations.controller.booking;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
-import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDto;
 import pl.pingwit.pingwitseatreservations.service.booking.BookingService;
 
 @Tag(name = "Booking API")

@@ -1,7 +1,4 @@
-package pl.pingwit.pingwitseatreservations.controller.booking;
-import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
-import pl.pingwit.pingwitseatreservations.repository.client.Client;
-import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
+package pl.pingwit.pingwitseatreservations.controller.booking.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;

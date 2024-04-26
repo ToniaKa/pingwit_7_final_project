@@ -7,11 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "film",schema = "seat_reservations")
+@Table(name = "film", schema = "seat_reservations")
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "film_id_gen")
-    @SequenceGenerator(name = "film_id_gen", sequenceName = "film_id_seq",schema = "seat_reservations", allocationSize = 1)
+    @SequenceGenerator(name = "film_id_gen", sequenceName = "film_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
 
@@ -29,7 +29,7 @@ public class Film {
     private Integer duration;
 
     @OneToMany(mappedBy = "film")
-   private List<Session> sessions;
+    private List<Session> sessions;
 
     public Film() {
     }

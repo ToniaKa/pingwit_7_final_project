@@ -1,18 +1,16 @@
 package pl.pingwit.pingwitseatreservations.repository.client;
 
 import jakarta.persistence.*;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
-import pl.pingwit.pingwitseatreservations.repository.session.Session;
 
 import java.util.List;
 
 @Entity
-@Table(name = "client",schema = "seat_reservations")
+@Table(name = "client", schema = "seat_reservations")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id_gen")
-    @SequenceGenerator(name = "client_id_gen", sequenceName = "client_id_seq",schema = "seat_reservations", allocationSize = 1)
+    @SequenceGenerator(name = "client_id_gen", sequenceName = "client_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
@@ -79,6 +77,7 @@ public class Client {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     public List<Booking> getBooking() {
         return booking;
     }

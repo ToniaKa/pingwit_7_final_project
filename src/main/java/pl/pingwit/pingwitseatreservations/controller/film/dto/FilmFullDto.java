@@ -1,19 +1,26 @@
-package pl.pingwit.pingwitseatreservations.controller.film;
+package pl.pingwit.pingwitseatreservations.controller.film.dto;
 
-import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.SessionShortDto;
 import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class UpdateFilmInputDto {
-
+public class FilmFullDto {
+    private Integer id;
     private String name;
     private LocalDate yearOfRelease;
     private AgeRestrictionType ageRestrictionType;
     private Integer duration;
-    private List<SessionDto> sessions;
+    private List<SessionShortDto> sessions;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -47,11 +54,11 @@ public class UpdateFilmInputDto {
         this.duration = duration;
     }
 
-    public List<SessionDto> getSessions() {
+    public List<SessionShortDto> getSessions() {
         return sessions;
     }
 
-    public void setSessions(List<SessionDto> sessions) {
+    public void setSessions(List<SessionShortDto> sessions) {
         this.sessions = sessions;
     }
 }

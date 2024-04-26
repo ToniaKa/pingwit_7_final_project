@@ -1,8 +1,8 @@
 package pl.pingwit.pingwitseatreservations.service.place;
 
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.place.CreatePlaceDto;
-import pl.pingwit.pingwitseatreservations.controller.place.PlaceDto;
+import pl.pingwit.pingwitseatreservations.controller.place.dto.CreatePlaceDto;
+import pl.pingwit.pingwitseatreservations.controller.place.dto.PlaceDto;
 import pl.pingwit.pingwitseatreservations.repository.place.Place;
 
 @Component

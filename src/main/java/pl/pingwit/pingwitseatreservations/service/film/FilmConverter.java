@@ -1,10 +1,9 @@
 package pl.pingwit.pingwitseatreservations.service.film;
 
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.film.AgeRestrictionTypeDto;
-import pl.pingwit.pingwitseatreservations.controller.film.CreateFilmDto;
-import pl.pingwit.pingwitseatreservations.controller.film.FilmDto;
-import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.CreateFilmDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmFullDto;
 import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
@@ -17,11 +16,12 @@ public class FilmConverter {
         this.sessionConverter = sessionConverter;
     }
 
-    public FilmDto convertToDto (Film film){
+    public FilmDto convertToDto(Film film) {
         return new FilmDto(film.getId(), film.getName(), film.getYearOfRelease());
     }
-    public FilmFullDto convertToFullDto(Film film){
-        FilmFullDto result=new FilmFullDto();
+
+    public FilmFullDto convertToFullDto(Film film) {
+        FilmFullDto result = new FilmFullDto();
         result.setId(film.getId());
         result.setName(film.getName());
         result.setYearOfRelease(film.getYearOfRelease());
@@ -30,8 +30,9 @@ public class FilmConverter {
         result.setSessions(film.getSessions().stream().map(sessionConverter::convertToShortDto).toList());
         return result;
     }
-    public Film convertToEntity (CreateFilmDto filmDto){
-        Film film=new Film();
+
+    public Film convertToEntity(CreateFilmDto filmDto) {
+        Film film = new Film();
         film.setName(filmDto.getName());
         film.setYearOfRelease(filmDto.getYearOfRelease());
         film.setAgeRestriction(AgeRestrictionType.valueOf(filmDto.getAgeRestrictionTypeDto().name()));

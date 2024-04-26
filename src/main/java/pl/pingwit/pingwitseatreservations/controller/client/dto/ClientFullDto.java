@@ -1,8 +1,6 @@
-package pl.pingwit.pingwitseatreservations.controller.client;
+package pl.pingwit.pingwitseatreservations.controller.client.dto;
 
-import jakarta.persistence.Column;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
-import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
 
 import java.util.List;
 

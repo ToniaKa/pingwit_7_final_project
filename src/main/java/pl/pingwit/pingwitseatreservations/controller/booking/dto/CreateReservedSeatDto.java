@@ -1,6 +1,4 @@
-package pl.pingwit.pingwitseatreservations.controller.booking;
-
-import java.util.Objects;
+package pl.pingwit.pingwitseatreservations.controller.booking.dto;
 
 public class CreateReservedSeatDto {
     private Integer sessionId;

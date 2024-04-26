@@ -1,9 +1,9 @@
 package pl.pingwit.pingwitseatreservations.service.client;
 
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.client.ClientDto;
-import pl.pingwit.pingwitseatreservations.controller.client.ClientFullDto;
-import pl.pingwit.pingwitseatreservations.controller.client.CreateClientDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientFullDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.CreateClientDto;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.service.booking.BookingConverter;
 
@@ -15,11 +15,12 @@ public class ClientConverter {
         this.bookingConverter = bookingConverter;
     }
 
-    public ClientDto convertToDto (Client client){
-        return new ClientDto(client.getId(),client.getName(),client.getSurname());
+    public ClientDto convertToDto(Client client) {
+        return new ClientDto(client.getId(), client.getName(), client.getSurname());
     }
-    public ClientFullDto convertToFullDto(Client client){
-        ClientFullDto result=new ClientFullDto();
+
+    public ClientFullDto convertToFullDto(Client client) {
+        ClientFullDto result = new ClientFullDto();
         result.setId(client.getId());
         result.setName(client.getName());
         result.setSurname(client.getSurname());
@@ -28,7 +29,8 @@ public class ClientConverter {
         result.setBooking(client.getBooking().stream().map(bookingConverter::convertToDto).toList());
         return result;
     }
-    public Client convertToEntity (CreateClientDto clientDto){
+
+    public Client convertToEntity(CreateClientDto clientDto) {
         return new Client(clientDto.getName(), clientDto.getSurname(), clientDto.getEmail(), clientDto.getPhone());
     }
 }

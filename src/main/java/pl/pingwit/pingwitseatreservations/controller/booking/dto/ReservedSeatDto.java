@@ -1,9 +1,7 @@
-package pl.pingwit.pingwitseatreservations.controller.booking;
+package pl.pingwit.pingwitseatreservations.controller.booking.dto;
 
-import pl.pingwit.pingwitseatreservations.controller.place.PlaceDto;
-import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
-
-import java.util.Objects;
+import pl.pingwit.pingwitseatreservations.controller.place.dto.PlaceDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.SessionDto;
 
 public class ReservedSeatDto {
 

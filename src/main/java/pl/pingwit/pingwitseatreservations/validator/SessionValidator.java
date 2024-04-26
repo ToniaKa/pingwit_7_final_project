@@ -1,8 +1,8 @@
 package pl.pingwit.pingwitseatreservations.validator;
 
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.session.CreateSessionDto;
-import pl.pingwit.pingwitseatreservations.controller.session.UpdateSessionInputDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.CreateSessionDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.UpdateSessionInputDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationsValidationException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
@@ -36,8 +36,6 @@ public class SessionValidator {
         if (!intersectionErrors.isEmpty()) {
             throw new SeatReservationsValidationException("Intersection is invalid ", intersectionErrors);
         }
-
-
     }
 
     public void validateOnUpdate(UpdateSessionInputDto inputDto) {
@@ -54,7 +52,6 @@ public class SessionValidator {
         if (!intersectionErrors.isEmpty()) {
             throw new SeatReservationsValidationException("Intersection is invalid ", intersectionErrors);
         }
-
     }
 
     private boolean intervalsIntersect(LocalDateTime start1, LocalDateTime end1,

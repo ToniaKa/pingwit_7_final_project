@@ -2,11 +2,16 @@ package pl.pingwit.pingwitseatreservations.controller.client;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientFullDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.CreateClientDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.UpdateClientInputDto;
 import pl.pingwit.pingwitseatreservations.service.booking.BookingService;
 import pl.pingwit.pingwitseatreservations.service.client.ClientService;
 
 import java.util.List;
+
 @Tag(name = "Client API")
 @RestController
 @RequestMapping("/client")

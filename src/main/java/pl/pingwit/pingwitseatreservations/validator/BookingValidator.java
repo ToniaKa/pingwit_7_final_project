@@ -1,8 +1,9 @@
 package pl.pingwit.pingwitseatreservations.validator;
 
 import org.springframework.stereotype.Component;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateReservedSeatDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationsValidationException;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeatsRepository;
 
@@ -21,7 +22,7 @@ public class BookingValidator {
         Integer sessionId = createBookingDto.getReservedSeats().stream()
                 .map(CreateReservedSeatDto::getSessionId)
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new SeatReservNotFoundException("Session not found"));
 
         for (CreateReservedSeatDto reservedSeat : createBookingDto.getReservedSeats()) {
             if (!reservedSeatsRepository.findAllBySessionIdAndPlaceId(sessionId, reservedSeat.getPlaceId()).isEmpty()) {

@@ -1,14 +1,13 @@
 package pl.pingwit.pingwitseatreservations.repository.place;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 @Entity
-@Table(name = "place",schema = "seat_reservations")
+@Table(name = "place", schema = "seat_reservations")
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "place_id_gen")
-    @SequenceGenerator(name = "place_id_gen", sequenceName = "place_id_seq",schema = "seat_reservations", allocationSize = 1)
+    @SequenceGenerator(name = "place_id_gen", sequenceName = "place_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
     @Column(name = "row")

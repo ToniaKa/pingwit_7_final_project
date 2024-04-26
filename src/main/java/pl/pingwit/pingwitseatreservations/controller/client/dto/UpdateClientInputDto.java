@@ -1,4 +1,4 @@
-package pl.pingwit.pingwitseatreservations.controller.client;
+package pl.pingwit.pingwitseatreservations.controller.client.dto;
 
 public class UpdateClientInputDto {
     private String name;

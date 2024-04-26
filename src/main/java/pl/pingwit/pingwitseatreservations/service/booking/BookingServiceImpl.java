@@ -2,8 +2,8 @@ package pl.pingwit.pingwitseatreservations.service.booking;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
-import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
+import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
@@ -11,7 +11,6 @@ import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.validator.BookingValidator;
 
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @Service
