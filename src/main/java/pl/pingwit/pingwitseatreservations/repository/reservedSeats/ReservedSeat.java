@@ -5,6 +5,8 @@ import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.place.Place;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "reserved_seats",schema = "seat_reservations")
 public class ReservedSeat {
@@ -65,5 +67,18 @@ public class ReservedSeat {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReservedSeat that = (ReservedSeat) o;
+        return Objects.equals(id, that.id) && Objects.equals(booking, that.booking) && Objects.equals(session, that.session) && Objects.equals(place, that.place);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, booking, session, place);
     }
 }

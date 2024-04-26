@@ -3,6 +3,8 @@ package pl.pingwit.pingwitseatreservations.controller.booking;
 import pl.pingwit.pingwitseatreservations.controller.place.PlaceDto;
 import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
 
+import java.util.Objects;
+
 public class ReservedSeatDto {
 
     private Integer id;
@@ -34,6 +36,4 @@ public class ReservedSeatDto {
     public void setPlace(PlaceDto place) {
         this.place = place;
     }
-
-
 }

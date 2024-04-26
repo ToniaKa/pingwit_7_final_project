@@ -6,14 +6,10 @@ import pl.pingwit.pingwitseatreservations.controller.film.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.FilmFullDto;
 import pl.pingwit.pingwitseatreservations.controller.film.UpdateFilmInputDto;
-import pl.pingwit.pingwitseatreservations.controller.session.SessionDto;
-import pl.pingwit.pingwitseatreservations.controller.session.SessionShortDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.repository.film.FilmRepository;
-import pl.pingwit.pingwitseatreservations.repository.session.Session;
-import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
-import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
+
 
 import java.util.List;
 @Transactional
@@ -21,14 +17,10 @@ import java.util.List;
 public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
     private final FilmConverter filmConverter;
-    private final SessionRepository sessionRepository;
-    private final SessionConverter sessionConverter;
 
-    public FilmServiceImpl(FilmRepository filmRepository, FilmConverter filmConverter, SessionRepository sessionRepository, SessionConverter sessionConverter) {
+    public FilmServiceImpl(FilmRepository filmRepository, FilmConverter filmConverter) {
         this.filmRepository = filmRepository;
         this.filmConverter = filmConverter;
-        this.sessionRepository = sessionRepository;
-        this.sessionConverter = sessionConverter;
     }
 
     @Override

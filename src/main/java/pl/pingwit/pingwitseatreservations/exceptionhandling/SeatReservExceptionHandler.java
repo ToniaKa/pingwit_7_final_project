@@ -16,6 +16,6 @@ public class SeatReservExceptionHandler {
 
     @ExceptionHandler(SeatReservationsValidationException.class)
     public ResponseEntity<String> handleValidationException(SeatReservationsValidationException e) {
-        return ResponseEntity.status(BAD_REQUEST).body(e.getMessage());
+        return ResponseEntity.status(BAD_REQUEST).body(e.toString());
     }
 }

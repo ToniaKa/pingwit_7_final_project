@@ -1,5 +1,7 @@
 package pl.pingwit.pingwitseatreservations.controller.booking;
 
+import java.util.Objects;
+
 public class CreateReservedSeatDto {
     private Integer sessionId;
     private Integer placeId;
@@ -20,4 +22,5 @@ public class CreateReservedSeatDto {
     public void setPlaceId(Integer placeId) {
         this.placeId = placeId;
     }
+
 }

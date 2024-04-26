@@ -26,7 +26,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<BookingDto> getClientBookings(Integer clientId) {
         Client client = new Client(clientId);
-        Optional<Booking> allByClientId = bookingRepository.findAllByClientId(client);
+        List<Booking> allByClientId = bookingRepository.findAllByClientId(client);
         return allByClientId.stream().map(bookingConverter::convertToDto).toList();
     }
 
@@ -38,7 +38,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingDto getBooking(Integer id) {
-        Booking booking = bookingRepository.findById(id).orElseThrow();
+        Booking booking = bookingRepository.findById(id).orElseThrow(()-> new SeatReservNotFoundException("Booking with id not found " + id));
         return bookingConverter.convertToDto(booking);
     }
 

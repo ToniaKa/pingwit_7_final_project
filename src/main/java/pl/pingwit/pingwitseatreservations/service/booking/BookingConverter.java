@@ -5,15 +5,18 @@ import pl.pingwit.pingwitseatreservations.controller.booking.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateBookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.CreateReservedSeatDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.ReservedSeatDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
 import pl.pingwit.pingwitseatreservations.repository.place.Place;
 import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
+import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeatsRepository;
 import pl.pingwit.pingwitseatreservations.repository.session.Session;
 import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
+import pl.pingwit.pingwitseatreservations.validator.PlaceValidator;
 
 import java.util.List;
 
@@ -32,6 +35,7 @@ public class BookingConverter {
         this.sessionRepository = sessionRepository;
 
         this.sessionConverter = sessionConverter;
+
     }
 
     public BookingDto convertToDto(Booking booking) {
@@ -55,7 +59,8 @@ public class BookingConverter {
     }
 
     public Booking convertToEntity(CreateBookingDto createBookingDto) {
-        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow();
+
+        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow(()-> new SeatReservNotFoundException("Client not found"));
         Booking booking = new Booking();
 
         booking.setClient(client);
@@ -64,7 +69,7 @@ public class BookingConverter {
                 .map(CreateReservedSeatDto::getSessionId)
                 .findFirst()
                 .flatMap(sessionRepository::findById)
-                .orElseThrow();
+                .orElseThrow(()-> new SeatReservNotFoundException("Session not found"));
 
         List<ReservedSeat> reservedSeats = createBookingDto.getReservedSeats().stream()
                 .map(reservedSeatDto -> {
