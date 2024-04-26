@@ -23,7 +23,7 @@ public class SessionValidator {
     }
 
     public void validateOnCreate(CreateSessionDto sessionDto) {
-        Film film = filmRepository.findById(sessionDto.getFilm()).orElseThrow(()-> new SeatReservNotFoundException("Film not found "));
+        Film film = filmRepository.findById(sessionDto.getFilm()).orElseThrow(() -> new SeatReservNotFoundException("Film not found "));
 
         LocalDateTime sessionStart = sessionDto.getStartDateAndTime();
         LocalDateTime sessionEnd = sessionStart.plusMinutes(film.getDuration());
@@ -36,10 +36,12 @@ public class SessionValidator {
         if (!intersectionErrors.isEmpty()) {
             throw new SeatReservationsValidationException("Intersection is invalid ", intersectionErrors);
         }
+
+
     }
 
     public void validateOnUpdate(UpdateSessionInputDto inputDto) {
-        Film film = filmRepository.findById(inputDto.getFilm()).orElseThrow(()-> new SeatReservNotFoundException("Film not found "));
+        Film film = filmRepository.findById(inputDto.getFilm()).orElseThrow(() -> new SeatReservNotFoundException("Film not found "));
 
         LocalDateTime sessionStart = inputDto.getStartDateAndTime();
         LocalDateTime sessionEnd = sessionStart.plusMinutes(film.getDuration());
