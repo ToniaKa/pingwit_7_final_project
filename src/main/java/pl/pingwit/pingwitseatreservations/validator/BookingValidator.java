@@ -22,7 +22,7 @@ public class BookingValidator {
         Integer sessionId = createBookingDto.getReservedSeats().stream()
                 .map(CreateReservedSeatDto::getSessionId)
                 .findAny()
-                .orElseThrow(() -> new SeatReservNotFoundException("Session not found"));
+                .orElseThrow(() -> new SeatReservNotFoundException("Session not found")); // здесь добавь в сообщение id сессии
 
         for (CreateReservedSeatDto reservedSeat : createBookingDto.getReservedSeats()) {
             if (!reservedSeatsRepository.findAllBySessionIdAndPlaceId(sessionId, reservedSeat.getPlaceId()).isEmpty()) {

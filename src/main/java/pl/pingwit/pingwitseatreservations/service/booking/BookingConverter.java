@@ -27,13 +27,13 @@ public class BookingConverter {
     private final SessionConverter sessionConverter;
 
 
-    public BookingConverter(PlaceConverter placeConverter, ClientRepository clientRepository, SessionRepository sessionRepository, SessionConverter sessionConverter) {
+    public BookingConverter(PlaceConverter placeConverter, ClientRepository clientRepository,
+                            // для читаемости рекомендую переносить строки, которые не помещаются на экран
+                            SessionRepository sessionRepository, SessionConverter sessionConverter) {
         this.placeConverter = placeConverter;
         this.clientRepository = clientRepository;
         this.sessionRepository = sessionRepository;
-
         this.sessionConverter = sessionConverter;
-
     }
 
     public BookingDto convertToDto(Booking booking) {
@@ -44,7 +44,6 @@ public class BookingConverter {
         bookingDto.setReservedSeats(booking.getReservedSeats().stream()
                 .map(this::toReservedSeatDto)
                 .toList());
-
         return bookingDto;
     }
 

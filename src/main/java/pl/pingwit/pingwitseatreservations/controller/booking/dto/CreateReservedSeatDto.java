@@ -1,9 +1,9 @@
 package pl.pingwit.pingwitseatreservations.controller.booking.dto;
 
 public class CreateReservedSeatDto {
+
     private Integer sessionId;
     private Integer placeId;
-
 
     public Integer getSessionId() {
         return sessionId;

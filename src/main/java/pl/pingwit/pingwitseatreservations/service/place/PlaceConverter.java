@@ -7,6 +7,7 @@ import pl.pingwit.pingwitseatreservations.repository.place.Place;
 
 @Component
 public class PlaceConverter {
+
     public PlaceDto convertToDto(Place place) {
         return new PlaceDto(place.getId(), place.getRow(), place.getNumber());
     }

@@ -3,8 +3,10 @@ package pl.pingwit.pingwitseatreservations.controller.session.dto;
 import java.time.LocalDateTime;
 
 public class CreateSessionDto {
+    // отделяй плиз поля пустой строкой
+
     private LocalDateTime startDateAndTime;
-    private LocalDateTime endDateAndTime;
+    private LocalDateTime endDateAndTime;  // это поле не нужно, тк оно вычисляется по началу сеанса + длительность фильма
     private Integer film;
 
     public Integer getFilm() {
