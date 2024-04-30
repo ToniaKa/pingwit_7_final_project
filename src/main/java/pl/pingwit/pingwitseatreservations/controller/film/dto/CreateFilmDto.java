@@ -3,11 +3,13 @@ package pl.pingwit.pingwitseatreservations.controller.film.dto;
 import java.time.LocalDate;
 
 public class CreateFilmDto {
+
     private Integer id;
     private String name;
     private LocalDate yearOfRelease;
     private AgeRestrictionTypeDto ageRestrictionTypeDto;
     private Integer duration;
+
 
     public Integer getId() {
         return id;

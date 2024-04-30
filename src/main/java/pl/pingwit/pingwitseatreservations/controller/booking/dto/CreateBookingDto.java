@@ -5,6 +5,7 @@ import java.util.List;
 
 // часть Dto для создания/обновления сущностей названы Create..InputDto, а часть - Create...Dto. Сделай единообразно, непринципиально, какой вариант
 public class CreateBookingDto {
+
     private Integer client;
     private LocalDateTime timeOfPurchase;
     private List<CreateReservedSeatDto> reservedSeats;

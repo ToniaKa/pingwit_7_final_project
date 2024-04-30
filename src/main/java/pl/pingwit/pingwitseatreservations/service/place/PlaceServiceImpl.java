@@ -12,8 +12,10 @@ import java.util.List;
 @Transactional
 @Service
 public class PlaceServiceImpl implements PlaceService {
+
     private final PlaceRepository placeRepository;
     private final PlaceConverter placeConverter;
+
 
     public PlaceServiceImpl(PlaceRepository placeRepository, PlaceConverter placeConverter) {
         this.placeRepository = placeRepository;

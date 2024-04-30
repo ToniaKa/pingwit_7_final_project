@@ -5,6 +5,7 @@ public class CreateReservedSeatDto {
     private Integer sessionId;
     private Integer placeId;
 
+
     public Integer getSessionId() {
         return sessionId;
     }

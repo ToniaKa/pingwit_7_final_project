@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "film", schema = "seat_reservations")
 public class Film {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "film_id_gen")
     @SequenceGenerator(name = "film_id_gen", sequenceName = "film_id_seq", schema = "seat_reservations", allocationSize = 1)

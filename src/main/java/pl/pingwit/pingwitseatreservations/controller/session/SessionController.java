@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import pl.pingwit.pingwitseatreservations.controller.session.dto.CreateSessionDto;
 import pl.pingwit.pingwitseatreservations.controller.session.dto.SessionDto;
-import pl.pingwit.pingwitseatreservations.controller.session.dto.UpdateSessionInputDto;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.UpdateSessionDto;
 import pl.pingwit.pingwitseatreservations.service.session.SessionService;
 
 import java.util.List;
@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/session")
 public class SessionController {
+
     private final SessionService sessionService;
 
     public SessionController(SessionService sessionService) {
@@ -35,7 +36,7 @@ public class SessionController {
     }
 
     @PutMapping("/{id}")
-    public void updateSession(@RequestBody UpdateSessionInputDto inputDto, @PathVariable(name = "id") Integer id) {
+    public void updateSession(@RequestBody UpdateSessionDto inputDto, @PathVariable(name = "id") Integer id) {
         sessionService.updateSession(id, inputDto);
     }
 }

@@ -1,10 +1,12 @@
 package pl.pingwit.pingwitseatreservations.controller.client.dto;
 
-public class UpdateClientInputDto {
+public class UpdateClientDto {
+
     private String name;
     private String surname;
     private String email;
     private String phone;
+
 
     public String getName() {
         return name;

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmFullDto;
-import pl.pingwit.pingwitseatreservations.controller.film.dto.UpdateFilmInputDto;
-import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.UpdateFilmDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.repository.film.FilmRepository;
 
@@ -15,8 +15,10 @@ import java.util.List;
 @Transactional
 @Service
 public class FilmServiceImpl implements FilmService {
+
     private final FilmRepository filmRepository;
     private final FilmConverter filmConverter;
+
 
     public FilmServiceImpl(FilmRepository filmRepository, FilmConverter filmConverter) {
         this.filmRepository = filmRepository;
@@ -32,7 +34,7 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public FilmFullDto getFilm(Integer id) {
-        Film film = filmRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Film with id not found " + id));
+        Film film = filmRepository.findById(id).orElseThrow(() -> new SeatReservationNotFoundException("Film with id not found " + id));
         return filmConverter.convertToFullDto(film);
     }
 
@@ -43,8 +45,8 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public void updateFilm(Integer id, UpdateFilmInputDto inputDto) {
-        Film filmToUpdate = filmRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Film with id not found " + id));
+    public void updateFilm(Integer id, UpdateFilmDto inputDto) {
+        Film filmToUpdate = filmRepository.findById(id).orElseThrow(() -> new SeatReservationNotFoundException("Film with id not found " + id));
         filmToUpdate.setName(inputDto.getName());
         filmToUpdate.setYearOfRelease(inputDto.getYearOfRelease());
         filmToUpdate.setAgeRestriction(inputDto.getAgeRestrictionType());

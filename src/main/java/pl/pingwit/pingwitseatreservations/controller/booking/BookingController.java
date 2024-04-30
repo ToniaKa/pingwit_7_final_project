@@ -10,6 +10,7 @@ import pl.pingwit.pingwitseatreservations.service.booking.BookingService;
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
+
     private final BookingService bookingService;
 
     public BookingController(BookingService bookingService) {

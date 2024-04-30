@@ -2,8 +2,8 @@ package pl.pingwit.pingwitseatreservations.validator;
 
 import org.springframework.stereotype.Component;
 import pl.pingwit.pingwitseatreservations.controller.session.dto.CreateSessionDto;
-import pl.pingwit.pingwitseatreservations.controller.session.dto.UpdateSessionInputDto;
-import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
+import pl.pingwit.pingwitseatreservations.controller.session.dto.UpdateSessionDto;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationNotFoundException;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationsValidationException;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 import pl.pingwit.pingwitseatreservations.repository.film.FilmRepository;
@@ -14,8 +14,10 @@ import java.util.List;
 
 @Component
 public class SessionValidator {
+
     private final FilmRepository filmRepository;
     private final SessionRepository sessionRepository;
+
 
     public SessionValidator(FilmRepository filmRepository, SessionRepository sessionRepository) {
         this.filmRepository = filmRepository;
@@ -23,7 +25,7 @@ public class SessionValidator {
     }
 
     public void validateOnCreate(CreateSessionDto sessionDto) {
-        Film film = filmRepository.findById(sessionDto.getFilm()).orElseThrow(() -> new SeatReservNotFoundException("Film not found "));
+        Film film = filmRepository.findById(sessionDto.getFilm()).orElseThrow(() -> new SeatReservationNotFoundException("Film with id not found " + sessionDto.getFilm()));
 
         LocalDateTime sessionStart = sessionDto.getStartDateAndTime();
         LocalDateTime sessionEnd = sessionStart.plusMinutes(film.getDuration());
@@ -38,8 +40,8 @@ public class SessionValidator {
         }
     }
 
-    public void validateOnUpdate(UpdateSessionInputDto inputDto) {
-        Film film = filmRepository.findById(inputDto.getFilm()).orElseThrow(() -> new SeatReservNotFoundException("Film not found "));
+    public void validateOnUpdate(UpdateSessionDto inputDto) {
+        Film film = filmRepository.findById(inputDto.getFilm()).orElseThrow(() -> new SeatReservationNotFoundException("Film with id not found " + inputDto.getFilm()));
 
         LocalDateTime sessionStart = inputDto.getStartDateAndTime();
         LocalDateTime sessionEnd = sessionStart.plusMinutes(film.getDuration());

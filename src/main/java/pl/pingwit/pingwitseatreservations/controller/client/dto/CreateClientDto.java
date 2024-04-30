@@ -1,11 +1,13 @@
 package pl.pingwit.pingwitseatreservations.controller.client.dto;
 
 public class CreateClientDto {
+
     private Integer id;
     private String name;
     private String surname;
     private String email;
     private String phone;
+
 
     public Integer getId() {
         return id;

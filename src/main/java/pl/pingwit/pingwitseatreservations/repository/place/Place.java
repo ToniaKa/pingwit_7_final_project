@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "place", schema = "seat_reservations")
 public class Place {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "place_id_gen")
     @SequenceGenerator(name = "place_id_gen", sequenceName = "place_id_seq", schema = "seat_reservations", allocationSize = 1)

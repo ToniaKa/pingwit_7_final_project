@@ -6,7 +6,7 @@ import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientDto;
 import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientFullDto;
 import pl.pingwit.pingwitseatreservations.controller.client.dto.CreateClientDto;
-import pl.pingwit.pingwitseatreservations.controller.client.dto.UpdateClientInputDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.UpdateClientDto;
 import pl.pingwit.pingwitseatreservations.service.booking.BookingService;
 import pl.pingwit.pingwitseatreservations.service.client.ClientService;
 
@@ -41,7 +41,7 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public void updateClient(@RequestBody UpdateClientInputDto inputDto, @PathVariable(name = "id") Integer id) {
+    public void updateClient(@RequestBody UpdateClientDto inputDto, @PathVariable(name = "id") Integer id) {
         clientService.updateClient(id, inputDto);
     }
 

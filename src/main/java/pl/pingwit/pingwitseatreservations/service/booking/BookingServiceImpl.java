@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDto;
-import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservNotFoundException;
+import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationNotFoundException;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.booking.BookingRepository;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
@@ -19,6 +19,7 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final BookingConverter bookingConverter;
     private final BookingValidator bookingValidator;
+
 
     public BookingServiceImpl(BookingRepository bookingRepository, BookingConverter bookingConverter, BookingValidator bookingValidator) {
         this.bookingRepository = bookingRepository;
@@ -42,8 +43,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public BookingDto getBooking(Integer id) {
-        Booking booking = bookingRepository.findById(id).orElseThrow(() -> new SeatReservNotFoundException("Booking with id not found " + id));
+        Booking booking = bookingRepository.findById(id).orElseThrow(() -> new SeatReservationNotFoundException("Booking with id not found " + id));
         return bookingConverter.convertToDto(booking);
     }
-
 }

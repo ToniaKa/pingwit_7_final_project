@@ -3,6 +3,7 @@ package pl.pingwit.pingwitseatreservations.exceptionhandling;
 import java.util.List;
 
 public class SeatReservationsValidationException extends RuntimeException {
+
     private final List<String> violations;
 
     public SeatReservationsValidationException(String message, List<String> violations) {
