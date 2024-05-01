@@ -20,14 +20,10 @@ public class BookingValidator {
     }
 
     public void validateOnCreate(CreateBookingDto createBookingDto) {
-        Integer[] sessionId1 = new Integer[1];
         Integer sessionId = createBookingDto.getReservedSeats().stream()
-                .map(createReservedSeatDto-> {
-                    sessionId1[0] = createReservedSeatDto.getSessionId();
-                    return sessionId1[0];
-                })
+                .map(CreateReservedSeatDto::getSessionId)
                 .findAny()
-                .orElseThrow(() -> new SeatReservationNotFoundException("Session with id not found" + sessionId1[0] )); // здесь добавь в сообщение id сессии
+                .orElseThrow(() -> new SeatReservationNotFoundException("No session id was provided"));
 
         for (CreateReservedSeatDto reservedSeat : createBookingDto.getReservedSeats()) {
             if (!reservedSeatsRepository.findAllBySessionIdAndPlaceId(sessionId, reservedSeat.getPlaceId()).isEmpty()) {
