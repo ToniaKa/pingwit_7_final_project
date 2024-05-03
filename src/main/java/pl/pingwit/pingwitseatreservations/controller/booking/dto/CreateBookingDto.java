@@ -3,7 +3,6 @@ package pl.pingwit.pingwitseatreservations.controller.booking.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-// часть Dto для создания/обновления сущностей названы Create..InputDto, а часть - Create...Dto. Сделай единообразно, непринципиально, какой вариант
 public class CreateBookingDto {
 
     private Integer client;

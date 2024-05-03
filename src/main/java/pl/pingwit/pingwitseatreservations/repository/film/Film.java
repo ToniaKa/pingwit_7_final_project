@@ -35,7 +35,6 @@ public class Film {
     public Film() {
     }
 
-    // если этот конструктор не понадобится в тестах - удаляй его. аналогично для всех сущностей и dto
     public Film(String name, LocalDate yearOfRelease, AgeRestrictionType ageRestriction, Integer duration) {
         this.name = name;
         this.yearOfRelease = yearOfRelease;

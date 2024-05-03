@@ -8,8 +8,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @ControllerAdvice
-public class SeatReservationExceptionHandler { // SeatReserv -> SeatReservation
-    // методы отделяй пустыми строками
+public class SeatReservationExceptionHandler {
 
     @ExceptionHandler(SeatReservationNotFoundException.class)
     public ResponseEntity<String> handleNotFoundException(SeatReservationNotFoundException e) {

@@ -19,7 +19,6 @@ public class SessionConverter {
         return sessionDto;
     }
 
-    // переименуй в convertToEntity
     public Session convertToEntity(CreateSessionDto sessionDto) {
         Film film = new Film();
         film.setId(sessionDto.getFilm());

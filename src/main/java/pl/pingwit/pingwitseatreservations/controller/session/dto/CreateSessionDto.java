@@ -3,7 +3,6 @@ package pl.pingwit.pingwitseatreservations.controller.session.dto;
 import java.time.LocalDateTime;
 
 public class CreateSessionDto {
-    // отделяй плиз поля пустой строкой
 
     private LocalDateTime startDateAndTime;
     private Integer film;

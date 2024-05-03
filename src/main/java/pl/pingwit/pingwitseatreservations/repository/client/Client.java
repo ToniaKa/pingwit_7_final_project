@@ -14,7 +14,6 @@ public class Client {
     @SequenceGenerator(name = "client_id_gen", sequenceName = "client_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
-    // разделяй плиз поля пустой строкой
 
     @Column(name = "name")
     private String name;

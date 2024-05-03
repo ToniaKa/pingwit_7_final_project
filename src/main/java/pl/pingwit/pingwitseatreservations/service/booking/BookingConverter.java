@@ -17,9 +17,6 @@ import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 @Component
 public class BookingConverter {
@@ -31,7 +28,6 @@ public class BookingConverter {
 
 
     public BookingConverter(PlaceConverter placeConverter, ClientRepository clientRepository,
-                            // для читаемости рекомендую переносить строки, которые не помещаются на экран
                             SessionRepository sessionRepository, SessionConverter sessionConverter) {
         this.placeConverter = placeConverter;
         this.clientRepository = clientRepository;
@@ -60,26 +56,17 @@ public class BookingConverter {
 
     public Booking convertToEntity(CreateBookingDto createBookingDto) {
 
-        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow(() -> new SeatReservationNotFoundException("Client with id not found " + createBookingDto.getClient()));
+        Client client = clientRepository.findById(createBookingDto.getClient()).orElseThrow(() ->
+                new SeatReservationNotFoundException("Client with id not found " + createBookingDto.getClient()));
         Booking booking = new Booking();
 
         booking.setClient(client);
         booking.setTimeOfPurchase(createBookingDto.getTimeOfPurchase());
-        /*Session session = createBookingDto.getReservedSeats().stream()
+        Session session = createBookingDto.getReservedSeats().stream()
                 .map(CreateReservedSeatDto::getSessionId)
                 .findFirst()
                 .flatMap(sessionRepository::findById)
-                .orElseThrow(() -> new SeatReservationNotFoundException("Session with id not found " ));*/
-
-        Integer[] sessionId = new Integer[1];
-        Session session=createBookingDto.getReservedSeats().stream()
-                .map(createReservedSeatDto -> {
-                     sessionId[0] = createReservedSeatDto.getSessionId();
-                    return sessionId[0];
-                })
-                .findFirst()
-                .flatMap(sessionRepository::findById)
-                .orElseThrow(() -> new SeatReservationNotFoundException("Session with id not found "+ sessionId[0]));
+                .orElseThrow(() -> new SeatReservationNotFoundException("No session id was provided"));
 
         List<ReservedSeat> reservedSeats = createBookingDto.getReservedSeats().stream()
                 .map(reservedSeatDto -> {
