@@ -6,6 +6,6 @@ import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
-    List<Booking> findAllByClientId(Client client);
 
+    List<Booking> findAllByClientId(Client client);
 }

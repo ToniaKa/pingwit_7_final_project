@@ -10,7 +10,9 @@ import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
 
 @Component
 public class FilmConverter {
+
     private final SessionConverter sessionConverter;
+
 
     public FilmConverter(SessionConverter sessionConverter) {
         this.sessionConverter = sessionConverter;

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class CreateBookingDto {
+
     private Integer client;
     private LocalDateTime timeOfPurchase;
     private List<CreateReservedSeatDto> reservedSeats;

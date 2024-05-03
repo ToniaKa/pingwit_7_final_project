@@ -8,11 +8,13 @@ import java.util.List;
 @Entity
 @Table(name = "client", schema = "seat_reservations")
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id_gen")
     @SequenceGenerator(name = "client_id_gen", sequenceName = "client_id_seq", schema = "seat_reservations", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "name")
     private String name;
     @Column(name = "surname")

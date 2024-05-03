@@ -9,7 +9,9 @@ import pl.pingwit.pingwitseatreservations.service.booking.BookingConverter;
 
 @Component
 public class ClientConverter {
+
     private final BookingConverter bookingConverter;
+
 
     public ClientConverter(BookingConverter bookingConverter) {
         this.bookingConverter = bookingConverter;

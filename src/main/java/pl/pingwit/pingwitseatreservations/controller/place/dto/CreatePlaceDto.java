@@ -1,9 +1,11 @@
 package pl.pingwit.pingwitseatreservations.controller.place.dto;
 
 public class CreatePlaceDto {
+
     private Integer id;
     private Integer row;
     private Integer number;
+
 
     public Integer getId() {
         return id;

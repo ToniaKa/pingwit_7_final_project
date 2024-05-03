@@ -6,6 +6,7 @@ import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDt
 import java.util.List;
 
 public interface BookingService {
+
     List<BookingDto> getClientBookings(Integer clientId);
 
     Integer createBooking(CreateBookingDto createBookingDto);

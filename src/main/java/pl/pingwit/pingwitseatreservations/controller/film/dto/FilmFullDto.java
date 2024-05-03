@@ -7,12 +7,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class FilmFullDto {
+
     private Integer id;
     private String name;
     private LocalDate yearOfRelease;
     private AgeRestrictionType ageRestrictionType;
     private Integer duration;
     private List<SessionShortDto> sessions;
+
 
     public Integer getId() {
         return id;

@@ -3,7 +3,7 @@ package pl.pingwit.pingwitseatreservations.validator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import pl.pingwit.pingwitseatreservations.controller.client.dto.CreateClientDto;
-import pl.pingwit.pingwitseatreservations.controller.client.dto.UpdateClientInputDto;
+import pl.pingwit.pingwitseatreservations.controller.client.dto.UpdateClientDto;
 import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationsValidationException;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class ClientValidator {
         }
     }
 
-    public void validateOnUpdate(UpdateClientInputDto inputDto) {
+    public void validateOnUpdate(UpdateClientDto inputDto) {
         List<String> errors = new ArrayList<>();
 
         if (StringUtils.isBlank(inputDto.getName())) {

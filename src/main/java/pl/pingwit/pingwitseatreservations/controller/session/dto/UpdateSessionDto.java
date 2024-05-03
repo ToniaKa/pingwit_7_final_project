@@ -2,10 +2,12 @@ package pl.pingwit.pingwitseatreservations.controller.session.dto;
 
 import java.time.LocalDateTime;
 
-public class UpdateSessionInputDto {
+public class UpdateSessionDto {
+
     private LocalDateTime startDateAndTime;
     private LocalDateTime endDateAndTime;
     private Integer film;
+
 
     public LocalDateTime getStartDateAndTime() {
         return startDateAndTime;

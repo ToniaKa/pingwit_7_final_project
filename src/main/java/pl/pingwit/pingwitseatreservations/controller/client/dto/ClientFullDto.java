@@ -5,12 +5,14 @@ import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
 import java.util.List;
 
 public class ClientFullDto {
+
     private Integer id;
     private String name;
     private String surname;
     private String email;
     private String phone;
     private List<BookingDto> booking;
+
 
     public List<BookingDto> getBooking() {
         return booking;

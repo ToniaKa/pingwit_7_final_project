@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "session", schema = "seat_reservations")
 public class Session {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "session_id_gen")
     @SequenceGenerator(name = "session_id_gen", sequenceName = "session_id_seq", schema = "seat_reservations", allocationSize = 1)

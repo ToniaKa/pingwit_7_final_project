@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "reserved_seats", schema = "seat_reservations")
 public class ReservedSeat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserved_seats_id_gen")
     @SequenceGenerator(name = "reserved_seats_id_gen", sequenceName = "reserved_seats_seq", schema = "seat_reservations", allocationSize = 1)

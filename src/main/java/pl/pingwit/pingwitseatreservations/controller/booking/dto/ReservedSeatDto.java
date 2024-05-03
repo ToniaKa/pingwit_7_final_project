@@ -6,9 +6,7 @@ import pl.pingwit.pingwitseatreservations.controller.session.dto.SessionDto;
 public class ReservedSeatDto {
 
     private Integer id;
-
     private SessionDto filmSession;
-
     private PlaceDto place;
 
     public Integer getId() {

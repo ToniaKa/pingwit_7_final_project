@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmFullDto;
-import pl.pingwit.pingwitseatreservations.controller.film.dto.UpdateFilmInputDto;
+import pl.pingwit.pingwitseatreservations.controller.film.dto.UpdateFilmDto;
 import pl.pingwit.pingwitseatreservations.service.film.FilmService;
 
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/film")
 public class FilmController {
+
     private final FilmService filmService;
 
     public FilmController(FilmService filmService) {
@@ -36,7 +37,7 @@ public class FilmController {
     }
 
     @PutMapping("/{id}")
-    public void updateFilm(@RequestBody UpdateFilmInputDto inputDto, @PathVariable(name = "id") Integer id) {
+    public void updateFilm(@RequestBody UpdateFilmDto inputDto, @PathVariable(name = "id") Integer id) {
         filmService.updateFilm(id, inputDto);
     }
 }

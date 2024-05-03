@@ -3,9 +3,11 @@ package pl.pingwit.pingwitseatreservations.controller.place.dto;
 import java.util.Objects;
 
 public class PlaceDto {
+
     private Integer id;
     private Integer row;
     private Integer number;
+
 
     public PlaceDto(Integer id, Integer row, Integer number) {
         this.id = id;

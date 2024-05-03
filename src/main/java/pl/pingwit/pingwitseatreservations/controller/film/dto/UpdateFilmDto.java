@@ -6,7 +6,7 @@ import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
 import java.time.LocalDate;
 import java.util.List;
 
-public class UpdateFilmInputDto {
+public class UpdateFilmDto {
 
     private String name;
     private LocalDate yearOfRelease;

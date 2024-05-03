@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class BookingDto {
+
     private Integer id;
     private String client;
     private LocalDateTime timeOfPurchase;
     private List<ReservedSeatDto> reservedSeats;
-
 
     public BookingDto() {
     }

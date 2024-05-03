@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/place")
 public class PlaceController {
+
     private final PlaceService placeService;
 
     public PlaceController(PlaceService placeService) {
