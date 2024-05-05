@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import pl.pingwit.pingwitseatreservations.repository.film.Film;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "session", schema = "seat_reservations")
@@ -69,5 +70,18 @@ public class Session {
 
     public void setFilm(Film film) {
         this.film = film;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Session session = (Session) o;
+        return Objects.equals(id, session.id) && Objects.equals(startDateAndTime, session.startDateAndTime) && Objects.equals(endDateAndTime, session.endDateAndTime) && Objects.equals(film, session.film);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, startDateAndTime, endDateAndTime, film);
     }
 }

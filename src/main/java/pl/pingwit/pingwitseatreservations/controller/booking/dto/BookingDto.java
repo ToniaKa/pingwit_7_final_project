@@ -2,6 +2,7 @@ package pl.pingwit.pingwitseatreservations.controller.booking.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class BookingDto {
 
@@ -52,4 +53,16 @@ public class BookingDto {
         this.reservedSeats = reservedSeats;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookingDto that = (BookingDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(client, that.client) && Objects.equals(timeOfPurchase, that.timeOfPurchase) && Objects.equals(reservedSeats, that.reservedSeats);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, client, timeOfPurchase, reservedSeats);
+    }
 }

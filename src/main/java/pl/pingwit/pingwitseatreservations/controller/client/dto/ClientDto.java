@@ -1,5 +1,7 @@
 package pl.pingwit.pingwitseatreservations.controller.client.dto;
 
+import java.util.Objects;
+
 public class ClientDto {
 
     private Integer id;
@@ -35,5 +37,18 @@ public class ClientDto {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientDto clientDto = (ClientDto) o;
+        return Objects.equals(id, clientDto.id) && Objects.equals(name, clientDto.name) && Objects.equals(surname, clientDto.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname);
     }
 }

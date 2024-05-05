@@ -5,6 +5,7 @@ import pl.pingwit.pingwitseatreservations.repository.session.Session;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "film", schema = "seat_reservations")
@@ -88,5 +89,18 @@ public class Film {
 
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Film film = (Film) o;
+        return Objects.equals(id, film.id) && Objects.equals(name, film.name) && Objects.equals(yearOfRelease, film.yearOfRelease) && ageRestriction == film.ageRestriction && Objects.equals(duration, film.duration) && Objects.equals(sessions, film.sessions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, yearOfRelease, ageRestriction, duration, sessions);
     }
 }

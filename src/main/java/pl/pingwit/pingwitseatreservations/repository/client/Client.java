@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "client", schema = "seat_reservations")
@@ -86,5 +87,18 @@ public class Client {
 
     public void setBooking(List<Booking> booking) {
         this.booking = booking;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(id, client.id) && Objects.equals(name, client.name) && Objects.equals(surname, client.surname) && Objects.equals(email, client.email) && Objects.equals(phone, client.phone) && Objects.equals(booking, client.booking);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, email, phone, booking);
     }
 }

@@ -1,6 +1,7 @@
 package pl.pingwit.pingwitseatreservations.controller.film.dto;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class FilmDto {
 
@@ -37,5 +38,18 @@ public class FilmDto {
 
     public void setYearOfRelease(LocalDate yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FilmDto filmDto = (FilmDto) o;
+        return Objects.equals(id, filmDto.id) && Objects.equals(name, filmDto.name) && Objects.equals(yearOfRelease, filmDto.yearOfRelease);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, yearOfRelease);
     }
 }
