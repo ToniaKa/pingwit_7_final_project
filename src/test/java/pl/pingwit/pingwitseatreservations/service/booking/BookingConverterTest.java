@@ -3,23 +3,23 @@ package pl.pingwit.pingwitseatreservations.service.booking;
 import org.junit.jupiter.api.Test;
 import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
 import pl.pingwit.pingwitseatreservations.controller.booking.dto.CreateBookingDto;
-import pl.pingwit.pingwitseatreservations.exceptionhandling.SeatReservationNotFoundException;
+
 import pl.pingwit.pingwitseatreservations.repository.booking.Booking;
 import pl.pingwit.pingwitseatreservations.repository.client.Client;
 import pl.pingwit.pingwitseatreservations.repository.client.ClientRepository;
-import pl.pingwit.pingwitseatreservations.repository.session.Session;
+
 import pl.pingwit.pingwitseatreservations.repository.session.SessionRepository;
 import pl.pingwit.pingwitseatreservations.service.place.PlaceConverter;
 import pl.pingwit.pingwitseatreservations.service.session.SessionConverter;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+
 
 class BookingConverterTest {
     private final PlaceConverter placeConverter=mock(PlaceConverter.class);
@@ -48,7 +48,7 @@ class BookingConverterTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-  /*  @Test
+    @Test
     void shouldConvertToEntity() {
         CreateBookingDto createBookingDto=new CreateBookingDto();
         createBookingDto.setId(1);
@@ -62,11 +62,8 @@ class BookingConverterTest {
         expected.setTimeOfPurchase(LocalDateTime.of(2025,1,1,14,0));
         expected.setReservedSeats(List.of());
 
-        when(clientRepository.findById(createBookingDto.getClient())).thenReturn(Optional.of(new Client(1)));
-        when(sessionRepository.findById(createBookingDto.getId())).thenReturn(Optional.of(new Session(1)));
-
         Booking actual = target.convertToEntity(createBookingDto);
 
         assertThat(actual).isEqualTo(expected);
-    }*/
+    }
 }

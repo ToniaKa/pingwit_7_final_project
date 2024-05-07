@@ -24,7 +24,7 @@ public class SessionValidator {
         this.sessionRepository = sessionRepository;
     }
 
-    public void validateOnCreate(CreateSessionDto sessionDto) {
+    public void validateOnCreate(CreateSessionDto sessionDto)  {
         Film film = filmRepository.findById(sessionDto.getFilm()).orElseThrow(() -> new SeatReservationNotFoundException("Film with id not found " + sessionDto.getFilm()));
 
         LocalDateTime sessionStart = sessionDto.getStartDateAndTime();

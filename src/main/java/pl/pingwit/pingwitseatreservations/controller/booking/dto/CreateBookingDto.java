@@ -7,7 +7,6 @@ import java.util.Objects;
 public class CreateBookingDto {
 
     private Integer id;
-
     private Integer client;
     private LocalDateTime timeOfPurchase;
     private List<CreateReservedSeatDto> reservedSeats;

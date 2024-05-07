@@ -50,20 +50,20 @@ public class PlaceIT {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBasicAuth("admin", "admin");
+        //headers.setBasicAuth("admin", "admin");
         HttpEntity<CreatePlaceDto> request = new HttpEntity<>(placeDto, headers);
 
-        String rentalCenterUrl = "http://localhost:" + port + "/rental-center";
+        String Url = "http://localhost:" + port + "/rental-center";
 
         // rental center creation
-        ResponseEntity<Integer> createdResponse = restTemplate.postForEntity(rentalCenterUrl, request, Integer.class);
-
+        ResponseEntity<Integer> createdResponse = restTemplate.postForEntity(Url, request, Integer.class);
         assertThat(createdResponse.getStatusCode().is2xxSuccessful()).isTrue();
-        Integer createdProductId = createdResponse.getBody();
+        Integer createdPlaceId = createdResponse.getBody();
 
         // retrieve created rental center
-        ResponseEntity<PlaceDto> response = restTemplate.exchange(rentalCenterUrl + "/" + createdProductId, HttpMethod.GET, request, PlaceDto.class);
+        ResponseEntity<PlaceDto> response = restTemplate.exchange(Url + "/" + createdPlaceId, HttpMethod.GET, request, PlaceDto.class);
         PlaceDto body = response.getBody();
+
 
         assertThat(body.getNumber().equals(1));
         assertThat(body.getRow().equals(1));
