@@ -13,7 +13,7 @@ class ClientValidatorTest {
     private final ClientValidator target=new ClientValidator();
 
     @Test
-    void shouldValidator() {
+    void shouldCreateClient() {
         CreateClientDto createClientDto=new CreateClientDto();
         createClientDto.setName("Test name");
         createClientDto.setSurname("Test surname");
@@ -43,7 +43,7 @@ class ClientValidatorTest {
     }
 
     @Test
-    void should() {
+    void shouldReturnExceptionsWhenUpdateClient() {
         UpdateClientDto updateClientDto=new UpdateClientDto();
         updateClientDto.setName("");
         updateClientDto.setSurname("");
