@@ -1,6 +1,5 @@
 package pl.pingwit.pingwitseatreservations.integration;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -22,11 +21,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
+
 @Testcontainers
 @SpringBootTest(classes = {PingwitseatreservationsApplication.class},
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ClientIT {
+class ClientIT {
 
     @Container
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:12");
@@ -43,7 +42,7 @@ public class ClientIT {
 
     @Test
     void verifyClientLifecycle() {
-        CreateClientDto clientDto=new CreateClientDto();
+        CreateClientDto clientDto = new CreateClientDto();
         clientDto.setId(21);
         clientDto.setName("Test name");
         clientDto.setSurname("Test surname");
@@ -55,6 +54,7 @@ public class ClientIT {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBasicAuth("admin", "admin");
         HttpEntity<CreateClientDto> request = new HttpEntity<>(clientDto, headers);
 
         String Url = "http://localhost:" + port + "/client";
