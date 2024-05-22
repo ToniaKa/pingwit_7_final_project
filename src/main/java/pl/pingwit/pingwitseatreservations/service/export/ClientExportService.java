@@ -30,8 +30,8 @@ public class ClientExportService {
 
     public byte[] exportClients() throws IOException {
         List<Client> clients = clientRepository.findAll();
-        List<Booking> bookings=bookingRepository.findAll();
-        List<ReservedSeat> reservedSeats=reservedSeatsRepository.findAll();
+        List<Booking> bookings = bookingRepository.findAll();
+        List<ReservedSeat> reservedSeats = reservedSeatsRepository.findAll();
 
 
         try (Workbook workbook = new XSSFWorkbook()) {
@@ -44,12 +44,11 @@ public class ClientExportService {
             Sheet workbookSheet = workbook.createSheet("Bookings");
 
             createHeaderBooking(workbookSheet);
-            dddd(bookings,workbookSheet);
+            createDataRowsBookings(bookings, workbookSheet);
 
             Sheet seats = workbook.createSheet("Reserved seats");
             createHeaderSeat(seats);
-            ppp(reservedSeats,seats);
-
+            createDataRowsSeats(reservedSeats, seats);
 
 
             // Write Excel to ByteArrayOutputStream
@@ -79,17 +78,18 @@ public class ClientExportService {
         headerRow.createCell(3).setCellValue("Email");
         headerRow.createCell(4).setCellValue("Phone");
     }
-    private void dddd(List<Booking> bookings, Sheet sheet){
-        int n=1;
-        for (Booking booking: bookings) {
+
+    private void createDataRowsBookings(List<Booking> bookings, Sheet sheet) {
+        int n = 1;
+        for (Booking booking : bookings) {
             Row row = sheet.createRow(n++);
             row.createCell(0).setCellValue(booking.getId());
             row.createCell(1).setCellValue(booking.getClient().getName());
             row.createCell(2).setCellValue(booking.getTimeOfPurchase());
         }
-
     }
-    private void ppp(List<ReservedSeat> seats, Sheet sheets) {
+
+    private void createDataRowsSeats(List<ReservedSeat> seats, Sheet sheets) {
         int n = 1;
         for (ReservedSeat reservedSeat : seats) {
             Row row = sheets.createRow(n++);
@@ -102,7 +102,6 @@ public class ClientExportService {
             row.createCell(6).setCellValue(reservedSeat.getSession().getFilm().getDuration());
             row.createCell(7).setCellValue(reservedSeat.getSession().getFilm().getYearOfRelease());
             row.createCell(8).setCellValue(reservedSeat.getSession().getStartDateAndTime());
-
         }
     }
 
@@ -112,6 +111,7 @@ public class ClientExportService {
         headerRow.createCell(1).setCellValue("Name");
         headerRow.createCell(2).setCellValue("Time of Purchase");
     }
+
     private void createHeaderSeat(Sheet sheets) {
         Row headerRow = sheets.createRow(0);
         headerRow.createCell(0).setCellValue("ID");

@@ -39,7 +39,6 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user, admin);
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -47,7 +46,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(HttpMethod.POST, "/film", "/client", "/session","/place").hasRole(ADMIN_ROLE)
+                        .requestMatchers(HttpMethod.POST, "/film", "/client", "/session", "/place").hasRole(ADMIN_ROLE)
                         .requestMatchers(HttpMethod.PUT, "/film/**", "/client/**", "/session/**").hasRole(ADMIN_ROLE)
                         .requestMatchers(HttpMethod.GET, "/client").hasRole(ADMIN_ROLE)
                         .requestMatchers(HttpMethod.GET, "/session", "/session/**", "/client/**", "/film",
