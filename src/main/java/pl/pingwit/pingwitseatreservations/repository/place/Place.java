@@ -2,6 +2,8 @@ package pl.pingwit.pingwitseatreservations.repository.place;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "place", schema = "seat_reservations")
 public class Place {
@@ -50,5 +52,18 @@ public class Place {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Place place = (Place) o;
+        return Objects.equals(id, place.id) && Objects.equals(row, place.row) && Objects.equals(number, place.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, row, number);
     }
 }

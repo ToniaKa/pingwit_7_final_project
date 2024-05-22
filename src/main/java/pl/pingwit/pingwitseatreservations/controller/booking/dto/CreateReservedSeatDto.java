@@ -5,6 +5,13 @@ public class CreateReservedSeatDto {
     private Integer sessionId;
     private Integer placeId;
 
+    public CreateReservedSeatDto() {
+    }
+
+    public CreateReservedSeatDto(Integer sessionId, Integer placeId) {
+        this.sessionId = sessionId;
+        this.placeId = placeId;
+    }
 
     public Integer getSessionId() {
         return sessionId;

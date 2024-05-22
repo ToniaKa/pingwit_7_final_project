@@ -75,11 +75,11 @@ public class ReservedSeat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReservedSeat that = (ReservedSeat) o;
-        return Objects.equals(id, that.id) && Objects.equals(booking, that.booking) && Objects.equals(session, that.session) && Objects.equals(place, that.place);
+        return Objects.equals(id, that.id)  && Objects.equals(session, that.session) && Objects.equals(place, that.place);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, booking, session, place);
+        return Objects.hash(id, session, place);
     }
 }

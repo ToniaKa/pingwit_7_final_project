@@ -1,6 +1,7 @@
 package pl.pingwit.pingwitseatreservations.controller.session.dto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class SessionDto {
 
@@ -50,5 +51,18 @@ public class SessionDto {
 
     public void setFilm(String film) {
         this.film = film;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SessionDto that = (SessionDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(startDateAndTime, that.startDateAndTime) && Objects.equals(endDateAndTime, that.endDateAndTime) && Objects.equals(film, that.film);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, startDateAndTime, endDateAndTime, film);
     }
 }

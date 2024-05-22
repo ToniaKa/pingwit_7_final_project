@@ -6,6 +6,7 @@ import pl.pingwit.pingwitseatreservations.repository.reservedSeats.ReservedSeat;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 import static jakarta.persistence.CascadeType.ALL;
 
@@ -60,5 +61,18 @@ public class Booking {
 
     public void setReservedSeats(List<ReservedSeat> reservedSeats) {
         this.reservedSeats = reservedSeats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return Objects.equals(id, booking.id) && Objects.equals(client, booking.client) && Objects.equals(timeOfPurchase, booking.timeOfPurchase) && Objects.equals(reservedSeats, booking.reservedSeats);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, client, timeOfPurchase, reservedSeats);
     }
 }

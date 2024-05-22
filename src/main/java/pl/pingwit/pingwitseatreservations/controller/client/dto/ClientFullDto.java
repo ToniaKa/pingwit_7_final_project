@@ -3,6 +3,7 @@ package pl.pingwit.pingwitseatreservations.controller.client.dto;
 import pl.pingwit.pingwitseatreservations.controller.booking.dto.BookingDto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ClientFullDto {
 
@@ -60,5 +61,18 @@ public class ClientFullDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientFullDto that = (ClientFullDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(booking, that.booking);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, email, phone, booking);
     }
 }

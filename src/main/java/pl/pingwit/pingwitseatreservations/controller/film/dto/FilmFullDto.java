@@ -5,6 +5,7 @@ import pl.pingwit.pingwitseatreservations.repository.film.AgeRestrictionType;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class FilmFullDto {
 
@@ -62,5 +63,18 @@ public class FilmFullDto {
 
     public void setSessions(List<SessionShortDto> sessions) {
         this.sessions = sessions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FilmFullDto that = (FilmFullDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(yearOfRelease, that.yearOfRelease) && ageRestrictionType == that.ageRestrictionType && Objects.equals(duration, that.duration) && Objects.equals(sessions, that.sessions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, yearOfRelease, ageRestrictionType, duration, sessions);
     }
 }

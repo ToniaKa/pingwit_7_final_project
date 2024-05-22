@@ -1,5 +1,7 @@
 package pl.pingwit.pingwitseatreservations.controller.place.dto;
 
+import java.util.Objects;
+
 public class CreatePlaceDto {
 
     private Integer id;
@@ -29,5 +31,18 @@ public class CreatePlaceDto {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CreatePlaceDto that = (CreatePlaceDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(row, that.row) && Objects.equals(number, that.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, row, number);
     }
 }
