@@ -1,6 +1,5 @@
 package pl.pingwit.pingwitseatreservations.integration;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -13,9 +12,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import pl.pingwit.pingwitseatreservations.PingwitseatreservationsApplication;
-import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientDto;
-import pl.pingwit.pingwitseatreservations.controller.client.dto.ClientFullDto;
-import pl.pingwit.pingwitseatreservations.controller.client.dto.CreateClientDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.AgeRestrictionTypeDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.CreateFilmDto;
 import pl.pingwit.pingwitseatreservations.controller.film.dto.FilmDto;
@@ -26,7 +22,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
+
 @Testcontainers
 @SpringBootTest(classes = {PingwitseatreservationsApplication.class},
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -58,6 +54,7 @@ public class FilmIT {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBasicAuth("admin", "admin");
         HttpEntity<CreateFilmDto> request = new HttpEntity<>(filmDto, headers);
 
         String Url = "http://localhost:" + port + "/film";
